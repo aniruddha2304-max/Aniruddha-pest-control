@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Services | Pest Control</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#ede9e9;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  background:#f4f5f6;
+  padding:10px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo-area img{
+  width:140px;
+  background:white;
+  padding:6px 10px;
+  border-radius:6px;
+}
+
+.navbar a{
+  color:#111;
+  margin-left:18px;
+  text-decoration:none;
+  font-weight:bold;
+  padding:6px 12px;
+  border-radius:6px;
+}
+
+.navbar a:hover,
+.navbar a.active{
+  background:#c60000;
+  color:white;
+}
+
+/* ===== PAGE HEADER ===== */
+.header{
+  background:linear-gradient(rgba(0,0,0,0.8)),
+             url('https://img.freepik.com/premium-photo/pest-control-hd-image-stock-images-pest-control-hd-image-stock-photo_1012565-47691.jpg');
+  background-size:cover;
+  color:rgb(233, 39, 39);
+  padding:70px 10%;
+  text-align:center;
+}
+
+.header h1{ margin-bottom:10px; }
+
+/* ===== SERVICES GRID ===== */
+.section{
+  padding:50px 10%;
+}
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:white;
+  border-radius:8px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  overflow:hidden;
+  text-align:center;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+.card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+}
+
+.card h3{
+  padding:12px 0 5px;
+}
+
+.card p{
+  font-size:14px;
+  color:#555;
+  padding:0 10px;
+}
+
+.card a{
+  display:inline-block;
+  margin:12px 0 18px;
+  background:#c60000;
+  color:white;
+  padding:10px 20px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* ===== LIVE CHAT ===== */
+.chat-launcher{
+  position:fixed;
+  left:20px;
+  bottom:30px;
+  background:#c60000;
+  color:white;
+  padding:12px 20px;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+.chatbox{
+  position:fixed;
+  left:20px;
+  bottom:90px;
+  width:260px;
+  background:white;
+  border-radius:10px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.3);
+  display:none;
+  flex-direction:column;
+}
+
+.chat-header{
+  background:#c60000;
+  color:white;
+  padding:10px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.chat-body{
+  height:160px;
+  overflow:auto;
+  padding:8px;
+  background:#f9f9f9;
+}
+
+.user-msg{
+  background:#c60000;
+  color:white;
+  padding:6px 10px;
+  border-radius:10px 10px 0 10px;
+  margin:6px 0;
+  text-align:right;
+}
+
+.bot-msg{
+  background:white;
+  border:1px solid #ddd;
+  padding:6px 10px;
+  border-radius:10px 10px 10px 0;
+  margin:6px 0;
+}
+
+.chatbox input{
+  border:none;
+  border-top:1px solid #ddd;
+  padding:10px;
+  width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo-area">
+    <img src="https://aniruddhapestcontrol.com/oglogo.jpg">
+  </div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="booking.html">Booking</a>
+    <a href="about.html">About Us</a>
+    <a href="signup.html">Signup</a>
+    <a href="login.html">Login</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Our Pest Control Services</h1>
+  <p>Safe • Reliable • Affordable Pest Solutions</p>
+</div>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="services">
+
+    <div class="card">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.SUGBCGmnS8gkeI9Q-F906wHaE8?pid=Api&P=0&h=180">
+      <h3>Cockroach Control</h3>
+      <p>Eliminate harmful cockroaches permanently.</p>
+      <a href="booking.html?service=Cockroach Control">Book Now</a>
+    </div>
+
+    <div class="card">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.PDbdhk7Qo6LO5lDUbCI7zgHaDt?pid=Api&P=0&h=180">
+      <h3>Termite Control</h3>
+      <p>Protect your property from termites.</p>
+      <a href="booking.html?service=Termite Control">Book Now</a>
+    </div>
+
+    <div class="card">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.4F4kld9_3afkoht_Ii3aGQHaD4?pid=Api&P=0&h=180">
+      <h3>Mosquito Control</h3>
+      <p>Prevent dengue & malaria effectively.</p>
+      <a href="booking.html?service=Mosquito Control">Book Now</a>
+    </div>
+
+    <div class="card">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.RXwuZsyJ6U1u9Z8uNPeFwQHaE7?pid=Api&P=0&h=180">
+      <h3>Woodborer Control</h3>
+      <p>Save wooden furniture & structures.</p>
+      <a href="booking.html?service=Woodborer Control">Book Now</a>
+    </div>
+
+    <div class="card">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.Ly35qjKyqK9YRtvDnomzbwHaE8?pid=Api&P=0&h=180">
+      <h3>Bed Bug Control</h3>
+      <p>Get rid of bed bugs completely.</p>
+      <a href="booking.html?service=Bed Bug Control">Book Now</a>
+    </div>
+
+    <div class="card">
+      <img src="https://wallpaperaccess.com/full/10678027.jpg">
+      <h3>Rodent Control</h3>
+      <p>Control rats & mice safely.</p>
+      <a href="booking.html?service=Rodent Control">Book Now</a>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn.rentokil.com/content/local/gb-pro/images/desktop/main_ant-control.jpg">
+      <h3>Ant Control</h3>
+      <p>Remove ants from home & office.</p>
+      <a href="booking.html?service=Ant Control">Book Now</a>
+    </div>
+
+    <div class="card">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.BKdhtoSqSIZTbYmj5hqK3gHaEK?pid=Api&P=0&h=180">
+      <h3>Fly Control</h3>
+      <p>Hygienic solutions for flies.</p>
+      <a href="booking.html?service=Fly Control">Book Now</a>
+    </div>
+
+    <div class="card">
+      <img src="https://tse1.mm.bing.net/th/id/OIP.PP7mTCQrB8FZq1SoS9PFSgHaHa?pid=Api&P=0&h=180">
+      <h3>Spider Control</h3>
+      <p>Spider-free safe environment.</p>
+      <a href="booking.html?service=Spider Control">Book Now</a>
+    </div>
+
+    <div class="card">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.ZtFf3MvPIdAyObP1T3_psQHaCx?pid=Api&P=0&h=180">
+      <h3>Commercial Pest Control</h3>
+      <p>Customized pest solutions for businesses.</p>
+      <a href="booking.html?service=Commercial Pest Control">Book Now</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIVE CHAT -->
+<div class="chat-launcher" onclick="toggleChat()">💬 Live Chat</div>
+
+<div class="chatbox" id="chatBox">
+  <div class="chat-header">
+    Live Support
+    <span onclick="toggleChat()">✖</span>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="bot-msg">Hello 👋 How can we help you?</div>
+  </div>
+  <input type="text" placeholder="Type message..." onkeydown="sendMsg(event)">
+</div>
+
+<script>
+function toggleChat(){
+  let box=document.getElementById("chatBox");
+  box.style.display = box.style.display==="flex" ? "none" : "flex";
+}
+
+function sendMsg(e){
+  if(e.key==="Enter"){
+    let body=document.getElementById("chatBody");
+    body.innerHTML += `<div class="user-msg">${e.target.value}</div>`;
+    e.target.value="";
+    body.innerHTML += `<div class="bot-msg">Our team will contact you shortly.</div>`;
+    body.scrollTop=body.scrollHeight;
+  }
+}
+</script>
+
+</body>
+</html>

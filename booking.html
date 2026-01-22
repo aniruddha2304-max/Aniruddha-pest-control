@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Book a Service | Pest Control</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f2f4f7;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  background:#e42727;
+  padding:12px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo-area img{
+  width:140px;
+  background:white;
+  padding:6px 10px;
+  border-radius:6px;
+}
+
+.navbar a{
+  color:white;
+  margin-left:18px;
+  text-decoration:none;
+  font-weight:bold;
+  padding:6px 12px;
+  border-radius:6px;
+}
+
+.navbar a:hover,
+.navbar a.active{
+  background:white;
+  color:#c60000;
+}
+
+/* ===== PAGE HEADER ===== */
+.header{
+  background:linear-gradient(rgba(0,0,0,0.75)),
+             url("https://img.freepik.com/premium-photo/pest-control-hd-image-stock-images-pest-control-hd-image-stock-photo_1012565-47691.jpg");
+  background-size:cover;
+  padding:60px 10%;
+  text-align:center;
+  color:white;
+}
+
+.header h1{ margin-bottom:8px; }
+
+/* ===== BOOKING CARD ===== */
+.booking-wrapper{
+  display:flex;
+  justify-content:center;
+  padding:40px 15px;
+}
+
+.booking-container{
+  width:100%;
+  max-width:650px;
+  background:white;
+  padding:35px;
+  border-radius:12px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+.booking-container h2{
+  text-align:center;
+  color:#c60000;
+}
+
+.booking-container p{
+  text-align:center;
+  color:#666;
+  margin-bottom:25px;
+}
+
+/* ===== FORM ===== */
+.form-group{
+  margin-bottom:15px;
+}
+
+label{
+  font-size:14px;
+  font-weight:bold;
+  display:block;
+  margin-bottom:6px;
+}
+
+input, select, textarea{
+  width:100%;
+  padding:12px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+
+textarea{ resize:none; }
+
+input:focus, select:focus, textarea:focus{
+  outline:none;
+  border-color:#c60000;
+}
+
+.form-row{
+  display:flex;
+  gap:15px;
+}
+
+.form-row .form-group{
+  flex:1;
+}
+
+/* ===== BUTTON ===== */
+button{
+  width:100%;
+  margin-top:15px;
+  background:linear-gradient(45deg,#c60000,#ff4d4d);
+  color:white;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:0.95;
+}
+
+/* ===== TRUST NOTE ===== */
+.note{
+  margin-top:15px;
+  text-align:center;
+  font-size:13px;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo-area">
+    <img src="https://aniruddhapestcontrol.com/oglogo.jpg" alt="Logo">
+  </div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="booking.html" class="active">Booking</a>
+    <a href="about.html">About</a>
+    <a href="signup.html">Signup</a>
+    <a href="login.html">Login</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Book Pest Control Service</h1>
+  <p>Fast • Safe • Affordable Solutions</p>
+</div>
+
+<!-- BOOKING FORM -->
+<div class="booking-wrapper">
+  <div class="booking-container">
+
+    <h2>Service Booking</h2>
+    <p>Fill the form below and our team will contact you shortly</p>
+
+    <form onsubmit="bookService(event)">
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" required placeholder="Enter your name">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="tel" required placeholder="10-digit mobile number">
+        </div>
+
+        <div class="form-group">
+          <label>Email (Optional)</label>
+          <input type="email" placeholder="example@email.com">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Select Service</label>
+        <select id="serviceSelect" required>
+          <option value="">Choose Service</option>
+          <option>Cockroach Control</option>
+          <option>Termite Control</option>
+          <option>Mosquito Control</option>
+          <option>Rodent Control</option>
+          <option>Woodborer Control</option>
+          <option>Bed Bug Control</option>
+          <option>Ant Control</option>
+          <option>Fly Control</option>
+          <option>Spider Control</option>
+          <option>Commercial Pest Control</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Preferred Date</label>
+          <input type="date" required>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <input type="time" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Address / Message</label>
+        <textarea rows="4" placeholder="Enter service address or message"></textarea>
+      </div>
+
+      <button type="submit">Confirm Booking</button>
+
+    </form>
+
+    <div class="note">
+      🔒 Your information is 100% secure with us
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* AUTO SELECT SERVICE FROM SERVICES PAGE */
+const params = new URLSearchParams(window.location.search);
+const service = params.get("service");
+if(service){
+  document.getElementById("serviceSelect").value = service;
+}
+
+/* FORM SUBMIT */
+function bookService(e){
+  e.preventDefault();
+  alert("✅ Booking successful! Our team will contact you shortly.");
+}
+</script>
+
+</body>
+</html>

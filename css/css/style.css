@@ -1,0 +1,97 @@
+.hero{
+  height:90vh;
+  background:linear-gradient(rgba(198,0,0,0.8),rgba(198,0,0,0.8)),
+             url('../images/banner.jpg');
+  background-size:cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-align:center;
+}
+
+.hero-content h1{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+.hero-content p{
+  font-size:18px;
+  margin-bottom:20px;
+}
+
+.why-us{
+  display:flex;
+  justify-content:space-around;
+  padding:40px;
+  background:#f9f9f9;
+}
+
+.why-us .box{
+  background:white;
+  padding:20px;
+  border-left:5px solid #c60000;
+  width:30%;
+  font-weight:bold;
+}
+
+/* FLOATING BUTTONS */
+.float{
+  position:fixed;
+  right:20px;
+  padding:12px 18px;
+  border-radius:30px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  z-index:1000;
+}
+
+.whatsapp{
+  bottom:90px;
+  background:#25D366;
+}
+
+.call{
+  bottom:30px;
+  background:#c60000;
+}
+
+/* CHATBOX */
+.chatbox{
+  position:fixed;
+  left:20px;
+  bottom:30px;
+  width:260px;
+  border:1px solid #c60000;
+  background:white;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.chat-header{
+  background:#c60000;
+  color:white;
+  padding:10px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.chat-body{
+  height:130px;
+  padding:8px;
+  overflow-y:auto;
+  font-size:14px;
+}
+
+.chat-body .bot{
+  color:#c60000;
+  margin-bottom:6px;
+}
+
+.chatbox input{
+  width:100%;
+  border:none;
+  border-top:1px solid #ddd;
+  padding:10px;
+}

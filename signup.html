@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Signup | Pest Control</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f6f8;
+}
+
+/* NAVBAR */
+.navbar{
+  background:#eeeff3;
+  padding:10px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo-area img{
+  width:140px;
+  background:white;
+  padding:6px 10px;
+  border-radius:6px;
+}
+
+.navbar a{
+  color:#111;
+  margin-left:18px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* SIGNUP CARD */
+.auth-container{
+  max-width:420px;
+  background:white;
+  margin:60px auto;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.auth-container h2{
+  text-align:center;
+  color:#c60000;
+  margin-bottom:10px;
+}
+
+.auth-container p{
+  text-align:center;
+  color:#666;
+  font-size:14px;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin:12px 0;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:14px;
+}
+
+button{
+  width:100%;
+  background:linear-gradient(45deg,#c60000,#ff4d4d);
+  color:white;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+button:hover{ opacity:0.9; }
+
+.switch{
+  text-align:center;
+  margin-top:15px;
+  font-size:14px;
+}
+
+.switch a{
+  color:#c60000;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* LIVE CHAT */
+.chat-launcher{
+  position:fixed;
+  left:20px;
+  bottom:30px;
+  background:#c60000;
+  color:white;
+  padding:12px 20px;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+.chatbox{
+  position:fixed;
+  left:20px;
+  bottom:90px;
+  width:260px;
+  background:white;
+  border-radius:10px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.3);
+  display:none;
+  flex-direction:column;
+}
+
+.chat-header{
+  background:#c60000;
+  color:white;
+  padding:10px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.chat-body{
+  height:160px;
+  overflow:auto;
+  padding:8px;
+  background:#f9f9f9;
+}
+
+.user-msg{
+  background:#c60000;
+  color:white;
+  padding:6px 10px;
+  border-radius:10px 10px 0 10px;
+  margin:6px 0;
+  text-align:right;
+}
+
+.bot-msg{
+  background:white;
+  border:1px solid #ddd;
+  padding:6px 10px;
+  border-radius:10px 10px 10px 0;
+  margin:6px 0;
+}
+
+.chatbox input{
+  border:none;
+  border-top:1px solid #ddd;
+  padding:10px;
+  width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <div class="logo-area">
+    <img src="https://aniruddhapestcontrol.com/oglogo.jpg">
+  </div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+  </div>
+</div>
+
+<div class="auth-container">
+  <h2>Create Account</h2>
+  <p>Register to book pest control services</p>
+
+  <form onsubmit="signup(event)">
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email Address" required>
+    <input type="tel" placeholder="Mobile Number" required>
+    <input type="password" placeholder="Password" required>
+    <input type="password" placeholder="Confirm Password" required>
+    <button>Create Account</button>
+  </form>
+
+  <div class="switch">
+    Already have an account? <a href="login.html">Login</a>
+  </div>
+</div>
+
+<!-- LIVE CHAT -->
+<div class="chat-launcher" onclick="toggleChat()">💬 Live Chat</div>
+<div class="chatbox" id="chatBox">
+  <div class="chat-header">
+    Support <span onclick="toggleChat()">✖</span>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="bot-msg">Hello 👋 Need help?</div>
+  </div>
+  <input type="text" placeholder="Type message..." onkeydown="sendMsg(event)">
+</div>
+
+<script>
+function signup(e){
+  e.preventDefault();
+  alert("✅ Signup Successful!");
+}
+
+function toggleChat(){
+  let box=document.getElementById("chatBox");
+  box.style.display = box.style.display==="flex" ? "none" : "flex";
+}
+
+function sendMsg(e){
+  if(e.key==="Enter"){
+    let body=document.getElementById("chatBody");
+    body.innerHTML += `<div class="user-msg">${e.target.value}</div>`;
+    e.target.value="";
+    body.innerHTML += `<div class="bot-msg">Our team will reply soon.</div>`;
+    body.scrollTop=body.scrollHeight;
+  }
+}
+</script>
+
+</body>
+</html>
