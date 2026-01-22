@@ -5,43 +5,6 @@
 <title>Book a Service | Pest Control</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#f2f4f7;
-}
-
-/* ===== NAVBAR ===== */
-.navbar{
-  background:#e42727;
-  padding:12px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.logo-area img{
-  width:140px;
-  background:white;
-  padding:6px 10px;
-  border-radius:6px;
-}
-
-.navbar a{
-  color:white;
-  margin-left:18px;
-  text-decoration:none;
-  font-weight:bold;
-  padding:6px 12px;
-  border-radius:6px;
-}
-
-.navbar a:hover,
-.navbar a.active{
-  background:white;
-  color:#c60000;
-}
-
 /* ===== PAGE HEADER ===== */
 .header{
   background:linear-gradient(rgba(0,0,0,0.75)),
@@ -146,54 +109,39 @@ button:hover{
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo-area">
-    <img src="https://aniruddhapestcontrol.com/oglogo.jpg" alt="Logo">
-  </div>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="booking.html" class="active">Booking</a>
-    <a href="about.html">About</a>
-    <a href="signup.html">Signup</a>
-    <a href="login.html">Login</a>
-  </div>
-</div>
-
 <!-- HEADER -->
-<div class="header">
+<div className="header">
   <h1>Book Pest Control Service</h1>
   <p>Fast • Safe • Affordable Solutions</p>
 </div>
 
 <!-- BOOKING FORM -->
-<div class="booking-wrapper">
-  <div class="booking-container">
+<div className="booking-wrapper">
+  <div className="booking-container">
 
     <h2>Service Booking</h2>
     <p>Fill the form below and our team will contact you shortly</p>
 
     <form onsubmit="bookService(event)">
 
-      <div class="form-group">
+      <div className="form-group">
         <label>Full Name</label>
         <input type="text" required placeholder="Enter your name">
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
+      <div className="form-row">
+        <div className="form-group">
           <label>Mobile Number</label>
           <input type="tel" required placeholder="10-digit mobile number">
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
           <label>Email (Optional)</label>
           <input type="email" placeholder="example@email.com">
         </div>
       </div>
 
-      <div class="form-group">
+      <div className="form-group">
         <label>Select Service</label>
         <select id="serviceSelect" required>
           <option value="">Choose Service</option>
@@ -210,19 +158,19 @@ button:hover{
         </select>
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
+      <div className="form-row">
+        <div className="form-group">
           <label>Preferred Date</label>
           <input type="date" required>
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
           <label>Preferred Time</label>
           <input type="time" required>
         </div>
       </div>
 
-      <div class="form-group">
+      <div className="form-group">
         <label>Address / Message</label>
         <textarea rows="4" placeholder="Enter service address or message"></textarea>
       </div>
@@ -231,7 +179,7 @@ button:hover{
 
     </form>
 
-    <div class="note">
+    <div className="note">
       🔒 Your information is 100% secure with us
     </div>
 

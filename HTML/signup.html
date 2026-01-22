@@ -5,35 +5,6 @@
 <title>Signup | Pest Control</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#f4f6f8;
-}
-
-/* NAVBAR */
-.navbar{
-  background:#eeeff3;
-  padding:10px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.logo-area img{
-  width:140px;
-  background:white;
-  padding:6px 10px;
-  border-radius:6px;
-}
-
-.navbar a{
-  color:#111;
-  margin-left:18px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
 /* SIGNUP CARD */
 .auth-container{
   max-width:420px;
@@ -157,18 +128,7 @@ button:hover{ opacity:0.9; }
 </head>
 
 <body>
-
-<div class="navbar">
-  <div class="logo-area">
-    <img src="https://aniruddhapestcontrol.com/oglogo.jpg">
-  </div>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-  </div>
-</div>
-
-<div class="auth-container">
+<div className="auth-container">
   <h2>Create Account</h2>
   <p>Register to book pest control services</p>
 
@@ -181,19 +141,19 @@ button:hover{ opacity:0.9; }
     <button>Create Account</button>
   </form>
 
-  <div class="switch">
+  <div className="switch">
     Already have an account? <a href="login.html">Login</a>
   </div>
 </div>
 
 <!-- LIVE CHAT -->
-<div class="chat-launcher" onclick="toggleChat()">💬 Live Chat</div>
-<div class="chatbox" id="chatBox">
-  <div class="chat-header">
+<div className="chat-launcher" onclick="toggleChat()">💬 Live Chat</div>
+<div className="chatbox" id="chatBox">
+  <div className="chat-header">
     Support <span onclick="toggleChat()">✖</span>
   </div>
-  <div class="chat-body" id="chatBody">
-    <div class="bot-msg">Hello 👋 Need help?</div>
+  <div className="chat-body" id="chatBody">
+    <div className="bot-msg">Hello 👋 Need help?</div>
   </div>
   <input type="text" placeholder="Type message..." onkeydown="sendMsg(event)">
 </div>
@@ -212,9 +172,9 @@ function toggleChat(){
 function sendMsg(e){
   if(e.key==="Enter"){
     let body=document.getElementById("chatBody");
-    body.innerHTML += `<div class="user-msg">${e.target.value}</div>`;
+    body.innerHTML += `<div className="user-msg">${e.target.value}</div>`;
     e.target.value="";
-    body.innerHTML += `<div class="bot-msg">Our team will reply soon.</div>`;
+    body.innerHTML += `<div className="bot-msg">Our team will reply soon.</div>`;
     body.scrollTop=body.scrollHeight;
   }
 }

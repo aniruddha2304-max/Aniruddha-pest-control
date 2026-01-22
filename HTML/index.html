@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pest Control Services</title>
+
+<style>
+
+/* ========== BUTTON STYLES ========== */
+.btn-primary{
+  background:#c60000;
+  color:white;
+  padding:14px 28px;
+  border-radius:30px;
+  font-size:16px;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.btn-outline{
+  border:2px solid #c60000;
+  color:#c60000;
+  padding:12px 26px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.btn-service{
+  background:white;
+  color:#c60000;
+  border:2px dashed #c60000;
+  padding:10px 20px;
+  border-radius:6px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.btn-book{
+  background:linear-gradient(45deg,#c60000,#ff4d4d);
+  color:white;
+  padding:14px 30px;
+  border-radius:40px;
+  font-size:17px;
+  border:none;
+  cursor:pointer;
+}
+
+/* FLOATING BUTTONS */
+.float-btn{
+  position:fixed;
+  right:20px;
+  padding:12px 18px;
+  border-radius:50px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  z-index:1000;
+}
+
+.whatsapp{ bottom:90px; background:#25D366; }
+.call{ bottom:30px; background:#c60000; }
+
+/* PAGE STYLES */
+body{margin:0;font-family:Arial;}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  background:#FFFFFF;
+  padding:10px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* LOGO */
+.logo-area img{
+  width:140px;
+  background:rgb(255, 255, 255);
+  padding:6px 10px;
+  border-radius:6px;
+  animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+  0%{ box-shadow:0 0 0 0 rgba(255,255,255,0.7); }
+  70%{ box-shadow:0 0 0 18px rgba(255,255,255,0); }
+  100%{ box-shadow:0 0 0 0 rgba(255,255,255,0); }
+}
+
+.navbar a{
+  color:#111;
+  margin-left:18px;
+  text-decoration:none;
+  font-weight:bold;
+  padding:6px 12px;
+  border-radius:6px;
+  transition:0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active{
+  background:#c60000;
+  color:white;
+}
+
+/* HERO */
+.hero{
+  height:90vh;
+  background:linear-gradient(rgba(0, 0, 0, 0.8)),
+             url('https://img.freepik.com/premium-photo/pest-control-hd-image-stock-images-pest-control-hd-image-stock-photo_1012565-47691.jpg');
+  background-size:cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+}
+
+.section{ padding:50px 10%; }
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.card{
+  border:1px solid #f7f2f2;
+  padding:20px;
+  text-align:center;
+}
+
+.card img{
+  width:100%;
+  height:140px;
+}
+
+.card a{
+  display:inline-block;
+  margin:12px 0 18px;
+  background:#c60000;
+  color:white;
+  padding:10px 20px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* LIVE CHAT */
+.chat-launcher{
+  position:fixed;
+  left:20px;
+  bottom:30px;
+  background:#c60000;
+  color:white;
+  padding:12px 20px;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+.chatbox{
+  position:fixed;
+  left:20px;
+  bottom:90px;
+  width:260px;
+  background:white;
+  border-radius:10px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.3);
+  display:none;
+  flex-direction:column;
+}
+
+.chat-header{
+  background:#c60000;
+  color:white;
+  padding:10px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.chat-body{
+  height:160px;
+  overflow:auto;
+  padding:8px;
+  background:#f9f9f9;
+}
+
+.user-msg{
+  background:#c60000;
+  color:white;
+  padding:6px 10px;
+  border-radius:10px 10px 0 10px;
+  margin:6px 0;
+  text-align:right;
+}
+
+.bot-msg{
+  background:white;
+  border:1px solid #ddd;
+  padding:6px 10px;
+  border-radius:10px 10px 0 10px;
+  margin:6px 0;
+}
+
+.chatbox input{
+  border:none;
+  border-top:1px solid #ddd;
+  padding:10px;
+  width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div className="navbar">
+  <div className="logo-area">
+    <img src="./assets/logo.png" alt="Logo">
+  </div>
+
+  <div>
+    <a href="index.html" className="active">Home</a>
+    <a href="services.html">Services</a>
+    <a href="booking.html">Booking</a>
+    <a href="about.html">About Us</a>
+    <a href="signup.html">Signup</a>
+    <a href="login.html">Login</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section className="hero">
+  <div>
+    <h1>Complete Pest Control Solution</h1>
+    <p>Protect Your Home & Business From Harmful Pests</p>
+    <a href="services.html" className="btn-primary">View Services</a>
+    <a href="booking.html" className="btn-outline">Get Free Inspection</a>
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section className="section">
+  <h2>Our Popular Services</h2>
+  <div className="services">
+
+    <div className="card">
+      <img src="https://tse1.mm.bing.net/th/id/OIP.JMCuAkI-dYwHdUAnU7SmugHaE7">
+      <h3>Cockroach Control</h3>
+      <p>Eliminate harmful cockroaches permanently.</p>
+      <a href="booking.html?service=Cockroach Control">Book Now</a>
+    </div>
+
+    <div className="card">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.tVInq_LoS7N6im_sfR8QXQHaE7">
+      <h3>Termite Control</h3>
+      <p>Protect your property from termites.</p>
+      <a href="booking.html?service=Termite Control">Book Now</a>
+    </div>
+
+    <div className="card">
+      <img src="https://www.pepcopp.co.in/images/pest-control/pest-innerpage/wood-borer-control.jpg">
+      <h3>Woodborer Control</h3>
+      <p>Save wooden furniture & structures.</p>
+      <a href="booking.html?service=Woodborer Control">Book Now</a>
+    </div>
+
+    <div className="card">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.MU5GIRJNGtNP5vvNoG38XAHaEL?pid=Api&P=0&h=180">
+      <h3>Commercial Pest Control</h3>
+      <p>Customized pest solutions for businesses.</p>
+      <a href="booking.html?service=Commercial Pest Control">Book Now</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- BOOKING CTA -->
+<section className="section" style="background:#f9f9f9;text-align:center;">
+  <h2>Book a Service Now</h2>
+  <p>Fast response | Affordable price | Expert technicians</p>
+  
+  <a href="booking.html" className="btn-book">Book Appointment</a>
+</section>
+
+<!-- FLOATING BUTTONS -->
+<a href="https://wa.me/917045420139" className="float-btn whatsapp">💬 WhatsApp</a>
+<a href="tel:7045420139" className="float-btn call">📞 Call Now</a>
+
+<!-- LIVE CHAT -->
+<div className="chat-launcher" onclick="toggleChat()">💬 Live Chat</div>
+
+<div className="chatbox" id="chatBox">
+  <div className="chat-header">
+    Live Support
+    <span onclick="toggleChat()">✖</span>
+  </div>
+
+  <div className="chat-body" id="chatBody">
+    <div className="bot-msg">Hello 👋 How can we help you?</div>
+  </div>
+
+  <input type="text" placeholder="Type message..." onkeydown="sendMsg(event)">
+</div>
+
+<script>
+function toggleChat(){
+  let box=document.getElementById("chatBox");
+  box.style.display = box.style.display==="flex" ? "none" : "flex";
+}
+
+function sendMsg(e){
+  if(e.key==="Enter"){
+    let body=document.getElementById("chatBody");
+    body.innerHTML += `<div className="user-msg">${e.target.value}</div>`;
+    e.target.value="";
+    body.innerHTML += `<div className="bot-msg">Thank you! Our team will contact you shortly.</div>`;
+    body.scrollTop=body.scrollHeight;
+  }
+}
+</script>
+
+</body>
+</html>

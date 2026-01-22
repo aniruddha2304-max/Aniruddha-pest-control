@@ -1,0 +1,230 @@
+/* RESET & DEFAULTS */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: Arial, Helvetica, sans-serif; }
+
+/* VARIABLES */
+:root {
+  --red: #c60000;
+  --dark: #222;
+  --light: #f6f6f6;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  padding: 12px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,.15);
+}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo img { width: 55px; border-radius: 6px; }
+.logo span { font-size: 20px; font-weight: bold; color: var(--red); }
+
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--dark);
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: .3s;
+}
+.nav-links a:hover { background: var(--red); color: white; }
+
+/* DROPDOWN */
+.dropdown { position: relative; }
+.dropdown-menu {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 240px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: .3s;
+}
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 14px 18px;
+  border-left: 4px solid transparent;
+}
+.dropdown-menu a:hover {
+  background: #f7f7f7;
+  border-left: 4px solid var(--red);
+  color: var(--red);
+}
+
+/* ========== HERO ========== */
+.about-hero {
+  background: linear-gradient(rgba(198,0,0,.85),rgba(198,0,0,.85)),
+              url('images/about-banner.jpg'); /* Ensure this path is correct in your project */
+  background-size: cover;
+  padding: 90px 10%;
+  color: white;
+  text-align: center;
+}
+.about-hero h1 { font-size: 42px; margin-bottom: 15px; }
+.about-hero p { font-size: 18px; max-width: 850px; margin: auto; }
+
+/* CONTENT */
+.about-section { padding: 60px 10%; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.about-grid img { width: 100%; border-radius: 14px; }
+.about-grid h2 { color: var(--red); margin-bottom: 12px; }
+
+/* HIGHLIGHTS */
+.highlight { background: var(--light); padding: 60px 10%; }
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+.highlight-box {
+  background: white;
+  padding: 25px;
+  border-top: 5px solid var(--red);
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+}
+.highlight-box h3 { color: var(--red); margin-bottom: 10px; }
+
+/* WHY US */
+.why-choose {
+  background: linear-gradient(135deg, var(--red), #ff4d4d);
+  padding: 60px 10%;
+  color: white;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+.why-box {
+  background: white;
+  color: black;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+}
+
+/* CTA */
+.cta-about { text-align: center; padding: 60px 10%; }
+.cta-btn {
+  background: var(--red);
+  color: white;
+  padding: 14px 34px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ========== FLOATING BUTTONS ========== */
+.float-btn {
+  position: fixed;
+  right: 20px;
+  padding: 14px 22px;
+  border-radius: 50px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  z-index: 1200;
+  animation: bounce 2s infinite;
+}
+.whatsapp { bottom: 100px; background: #25D366; }
+.call { bottom: 35px; background: var(--red); }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ========== LIVE CHAT ========== */
+.chat-launcher {
+  position: fixed;
+  left: 20px;
+  bottom: 35px;
+  background: var(--red);
+  color: white;
+  padding: 14px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1200;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(198,0,0,.6); }
+  70% { box-shadow: 0 0 0 15px rgba(198,0,0,0); }
+}
+
+/* Note: 'display: none' removed here; controlled by React state */
+.chatbox {
+  position: fixed;
+  left: 20px;
+  bottom: 95px;
+  width: 280px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  display: flex; 
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1300;
+}
+.chat-header {
+  background: var(--red);
+  color: white;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.chat-body {
+  height: 180px;
+  padding: 10px;
+  overflow: auto;
+  background: #f7f7f7;
+}
+.bot-msg {
+  background: white;
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin: 6px 0;
+  font-size: 14px;
+  align-self: flex-start;
+}
+.user-msg {
+  background: var(--red);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin: 6px 0;
+  text-align: right;
+  font-size: 14px;
+  align-self: flex-end;
+  margin-left: auto; /* Pushes user message to right */
+}
+.chatbox input {
+  border: none;
+  border-top: 1px solid #ddd;
+  padding: 12px;
+  outline: none;
+}

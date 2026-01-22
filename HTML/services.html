@@ -173,13 +173,13 @@ body{
 <body>
 
 <!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo-area">
+<div className="navbar">
+  <div className="logo-area">
     <img src="https://aniruddhapestcontrol.com/oglogo.jpg">
   </div>
   <div>
     <a href="index.html">Home</a>
-    <a href="services.html" class="active">Services</a>
+    <a href="services.html" className="active">Services</a>
     <a href="booking.html">Booking</a>
     <a href="about.html">About Us</a>
     <a href="signup.html">Signup</a>
@@ -188,79 +188,79 @@ body{
 </div>
 
 <!-- HEADER -->
-<div class="header">
+<div className="header">
   <h1>Our Pest Control Services</h1>
   <p>Safe • Reliable • Affordable Pest Solutions</p>
 </div>
 
 <!-- SERVICES -->
-<section class="section">
-  <div class="services">
+<section className="section">
+  <div className="services">
 
-    <div class="card">
+    <div className="card">
       <img src="https://tse3.mm.bing.net/th/id/OIP.SUGBCGmnS8gkeI9Q-F906wHaE8?pid=Api&P=0&h=180">
       <h3>Cockroach Control</h3>
       <p>Eliminate harmful cockroaches permanently.</p>
       <a href="booking.html?service=Cockroach Control">Book Now</a>
     </div>
 
-    <div class="card">
+    <div className="card">
       <img src="https://tse3.mm.bing.net/th/id/OIP.PDbdhk7Qo6LO5lDUbCI7zgHaDt?pid=Api&P=0&h=180">
       <h3>Termite Control</h3>
       <p>Protect your property from termites.</p>
       <a href="booking.html?service=Termite Control">Book Now</a>
     </div>
 
-    <div class="card">
+    <div className="card">
       <img src="https://tse4.mm.bing.net/th/id/OIP.4F4kld9_3afkoht_Ii3aGQHaD4?pid=Api&P=0&h=180">
       <h3>Mosquito Control</h3>
       <p>Prevent dengue & malaria effectively.</p>
       <a href="booking.html?service=Mosquito Control">Book Now</a>
     </div>
 
-    <div class="card">
+    <div className="card">
       <img src="https://tse2.mm.bing.net/th/id/OIP.RXwuZsyJ6U1u9Z8uNPeFwQHaE7?pid=Api&P=0&h=180">
       <h3>Woodborer Control</h3>
       <p>Save wooden furniture & structures.</p>
       <a href="booking.html?service=Woodborer Control">Book Now</a>
     </div>
 
-    <div class="card">
+    <div className="card">
       <img src="https://tse2.mm.bing.net/th/id/OIP.Ly35qjKyqK9YRtvDnomzbwHaE8?pid=Api&P=0&h=180">
       <h3>Bed Bug Control</h3>
       <p>Get rid of bed bugs completely.</p>
       <a href="booking.html?service=Bed Bug Control">Book Now</a>
     </div>
 
-    <div class="card">
+    <div className="card">
       <img src="https://wallpaperaccess.com/full/10678027.jpg">
       <h3>Rodent Control</h3>
       <p>Control rats & mice safely.</p>
       <a href="booking.html?service=Rodent Control">Book Now</a>
     </div>
 
-    <div class="card">
+    <div className="card">
       <img src="https://cdn.rentokil.com/content/local/gb-pro/images/desktop/main_ant-control.jpg">
       <h3>Ant Control</h3>
       <p>Remove ants from home & office.</p>
       <a href="booking.html?service=Ant Control">Book Now</a>
     </div>
 
-    <div class="card">
+    <div className="card">
       <img src="https://tse3.mm.bing.net/th/id/OIP.BKdhtoSqSIZTbYmj5hqK3gHaEK?pid=Api&P=0&h=180">
       <h3>Fly Control</h3>
       <p>Hygienic solutions for flies.</p>
       <a href="booking.html?service=Fly Control">Book Now</a>
     </div>
 
-    <div class="card">
+    <div className="card">
       <img src="https://tse1.mm.bing.net/th/id/OIP.PP7mTCQrB8FZq1SoS9PFSgHaHa?pid=Api&P=0&h=180">
       <h3>Spider Control</h3>
       <p>Spider-free safe environment.</p>
       <a href="booking.html?service=Spider Control">Book Now</a>
     </div>
 
-    <div class="card">
+    <div className="card">
       <img src="https://tse2.mm.bing.net/th/id/OIP.ZtFf3MvPIdAyObP1T3_psQHaCx?pid=Api&P=0&h=180">
       <h3>Commercial Pest Control</h3>
       <p>Customized pest solutions for businesses.</p>
@@ -271,15 +271,15 @@ body{
 </section>
 
 <!-- LIVE CHAT -->
-<div class="chat-launcher" onclick="toggleChat()">💬 Live Chat</div>
+<div className="chat-launcher" onclick="toggleChat()">💬 Live Chat</div>
 
-<div class="chatbox" id="chatBox">
-  <div class="chat-header">
+<div className="chatbox" id="chatBox">
+  <div className="chat-header">
     Live Support
     <span onclick="toggleChat()">✖</span>
   </div>
-  <div class="chat-body" id="chatBody">
-    <div class="bot-msg">Hello 👋 How can we help you?</div>
+  <div className="chat-body" id="chatBody">
+    <div className="bot-msg">Hello 👋 How can we help you?</div>
   </div>
   <input type="text" placeholder="Type message..." onkeydown="sendMsg(event)">
 </div>
@@ -293,9 +293,9 @@ function toggleChat(){
 function sendMsg(e){
   if(e.key==="Enter"){
     let body=document.getElementById("chatBody");
-    body.innerHTML += `<div class="user-msg">${e.target.value}</div>`;
+    body.innerHTML += `<div className="user-msg">${e.target.value}</div>`;
     e.target.value="";
-    body.innerHTML += `<div class="bot-msg">Our team will contact you shortly.</div>`;
+    body.innerHTML += `<div className="bot-msg">Our team will contact you shortly.</div>`;
     body.scrollTop=body.scrollHeight;
   }
 }
