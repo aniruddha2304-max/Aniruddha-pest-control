@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -8,12 +9,13 @@ const Navbar = () => {
       </div>
 
       <div>
-        <a href="index.html" className="active">Home</a>
-        <a href="services.html">Services</a>
-        <a href="booking.html">Booking</a>
-        <a href="about.html">About Us</a>
-        <a href="signup.html">Signup</a>
-        <a href="login.html">Login</a>
+        {/* MAIN.JSX KA CONST ROUTE DEKH AND USMAI path:"" LINK KAR YOU'LL UNDERSTAND THE LOGIC */}
+        <NavLink to="/" className="active">Home</NavLink>
+        <NavLink to="/services">Services</NavLink>
+        <NavLink to="/booking">Booking</NavLink>
+        <NavLink to="/about">About Us</NavLink>
+        <NavLink to="/signup">Signup</NavLink>
+        <NavLink to="/login">Login</NavLink>
       </div>
     </div>
   )
