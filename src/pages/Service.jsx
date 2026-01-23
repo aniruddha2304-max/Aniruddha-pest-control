@@ -117,11 +117,14 @@ const Services = () => {
               className="bg-white rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.15)] overflow-hidden text-center transition-transform duration-300 flex flex-col justify-between pb-[18px] hover:-translate-y-1.5" 
               key={index}
             >
-              <img src={service.img} alt={service.title} className="w-full h-[150px] object-cover" />
+              <Link to={service.slug}>
+                <img src={service.img} alt={service.title} className="w-full h-[150px] object-cover" />
+              </Link>
               <h3 className="py-3 pb-[5px] text-[#222] font-bold text-lg">{service.title}</h3>
               <p className="text-sm text-[#555] px-2.5 mb-[15px]">{service.desc}</p>
+              {/* TODO:- Need to store service category using redux/context API */}
               <Link
-                to={service.slug} 
+                to={"/booking"} 
                 className="inline-block mx-auto bg-[#c60000] text-white py-2.5 px-5 rounded-[30px] font-bold no-underline transition-colors hover:bg-[#a00000]"
               >
                 Book Now

@@ -1,42 +1,26 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Assuming react-router is used for navigation
+import { Link, useParams } from 'react-router-dom'; // Assuming react-router is used for navigation
+import { detailedService } from '../JSON_Data/detailedService';
 
 // Mock Data for a specific service (In a real app, you might fetch this based on an ID)
-const serviceData = {
-  id: "cockroach-control",
-  title: "Cockroach Control",
-  shortDesc: "Eliminate harmful cockroaches permanently.",
-  fullDesc: "Our advanced Cockroach Control service uses a gel-based treatment that targets cockroaches at their source. It is odorless, safe for pets and children, and ensures long-lasting protection. We inspect your kitchen, bathroom, and hidden crevices to wipe out the entire colony.",
-  img: "https://tse3.mm.bing.net/th/id/OIP.SUGBCGmnS8gkeI9Q-F906wHaE8?pid=Api&P=0&h=180",
-  price: "₹1,200",
-  rating: 4.8,
-  reviews: 124,
-  duration: "45 - 60 mins",
-  warranty: "6 Months",
-  features: [
-    "Odorless Gel Treatment",
-    "Safe for Kids & Pets",
-    "Government Approved Chemicals",
-    "Free Follow-up Service"
-  ],
-  availability: [
-    "Today, 4:00 PM",
-    "Tomorrow, 10:00 AM",
-    "Tomorrow, 2:00 PM"
-  ],
-  customerReviews: [
-    { name: "Rahul Sharma", rating: 5, comment: "Excellent service! The team was professional and the problem is completely solved.", date: "2 days ago" },
-    { name: "Priya Patil", rating: 4, comment: "Good job, but arrived 10 mins late. Treatment was effective though.", date: "1 week ago" }
-  ]
-};
-
+const serviceData = detailedService
 const ServiceDetails = () => {
   // In a real app, use useParams() to get the service ID from the URL
   // const { serviceId } = useParams(); 
   // const service = getServiceById(serviceId);
-  const service = serviceData; // Using mock data for now
-
+  const serviceList = serviceData; // Using mock data for now
   const [selectedSlot, setSelectedSlot] = useState(null);
+
+  const { slug } = useParams();
+
+  // 3. Run the "loop" to find the matching object
+  const service = serviceList.find((service) => service.id === slug);
+
+  // 4. Handle invalid slugs (Optional but recommended)
+  if (!service) {
+    return <h2>Service not found!</h2>;
+  }
+
 
   return (
     <div className="bg-[#f9f9f9] min-h-screen font-sans pb-10">
