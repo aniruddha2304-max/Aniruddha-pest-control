@@ -5,5 +5,6 @@ import Services from "./Service";
 import Booking from "./Booking";
 import Login from "./Login";
 import Signup from "./Signup";
+import ServiceDetails from "./ServiceDetail";
 
-export {Home, AboutUs, Services, Booking, Login, Signup}
+export {Home, AboutUs, Services, Booking, Login, Signup, ServiceDetails}

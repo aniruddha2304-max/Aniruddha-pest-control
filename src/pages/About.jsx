@@ -41,48 +41,6 @@ const AboutUs = () => {
 
   return (
     <div className="font-sans text-[#222]">
-      {/* Custom Animations for Pulse and Bounce to match original CSS */}
-      <style>{`
-        @keyframes custom-bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-6px); }
-        }
-        @keyframes custom-pulse {
-          0% { box-shadow: 0 0 0 0 rgba(198,0,0,0.6); }
-          70% { box-shadow: 0 0 0 15px rgba(198,0,0,0); }
-        }
-        .animate-custom-bounce { animation: custom-bounce 2s infinite; }
-        .animate-custom-pulse { animation: custom-pulse 2s infinite; }
-      `}</style>
-
-      {/* NAVBAR */}
-      <header className="sticky top-0 z-[1000] bg-white py-3 px-[8%] flex justify-between items-center shadow-[0_4px_15px_rgba(0,0,0,0.15)]">
-        <div className="flex items-center gap-3">
-          <img src="https://aniruddhapestcontrol.com/oglogo.jpg" alt="Logo" className="w-[55px] rounded-md" />
-          <span className="text-xl font-bold text-[#c60000]">Aniruddha Pest Control</span>
-        </div>
-
-        <nav className="flex gap-5 items-center">
-          <a href="index.html" className="font-bold text-[#222] py-2 px-3.5 rounded-md transition-all duration-300 hover:bg-[#c60000] hover:text-white">Home</a>
-          
-          {/* DROPDOWN */}
-          <div className="relative group">
-            <a href="services.html" className="font-bold text-[#222] py-2 px-3.5 rounded-md transition-all duration-300 hover:bg-[#c60000] hover:text-white block">
-              Services ▾
-            </a>
-            <div className="absolute top-[45px] left-0 w-[240px] bg-white rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] opacity-0 invisible translate-y-[10px] transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto">
-              <a href="services.html#cockroach" className="block py-3.5 px-[18px] border-l-4 border-transparent hover:bg-[#f7f7f7] hover:border-[#c60000] hover:text-[#c60000]">Cockroach Control</a>
-              <a href="services.html#termite" className="block py-3.5 px-[18px] border-l-4 border-transparent hover:bg-[#f7f7f7] hover:border-[#c60000] hover:text-[#c60000]">Termite Control</a>
-              <a href="services.html#commercial" className="block py-3.5 px-[18px] border-l-4 border-transparent hover:bg-[#f7f7f7] hover:border-[#c60000] hover:text-[#c60000]">Commercial Pest Control</a>
-              <a href="services.html#bedbug" className="block py-3.5 px-[18px] border-l-4 border-transparent hover:bg-[#f7f7f7] hover:border-[#c60000] hover:text-[#c60000]">Bed Bug Control</a>
-            </div>
-          </div>
-
-          <a href="about.html" className="font-bold text-[#222] py-2 px-3.5 rounded-md transition-all duration-300 hover:bg-[#c60000] hover:text-white">About</a>
-          <a href="booking.html" className="font-bold text-[#222] py-2 px-3.5 rounded-md transition-all duration-300 hover:bg-[#c60000] hover:text-white">Booking</a>
-          <a href="login.html" className="font-bold text-[#222] py-2 px-3.5 rounded-md transition-all duration-300 hover:bg-[#c60000] hover:text-white">Login</a>
-        </nav>
-      </header>
 
       {/* HERO */}
       <section className="bg-[linear-gradient(rgba(198,0,0,0.85),rgba(198,0,0,0.85)),url('images/about-banner.jpg')] bg-cover bg-center py-[90px] px-[10%] text-white text-center">

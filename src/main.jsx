@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from "./App.jsx";
-import { Services, AboutUs, Booking, Home, Login, Signup } from './pages/index.js'
+import { Services, AboutUs, Booking, Home, Login, Signup, ServiceDetails } from './pages/index.js'
 
 const router = createBrowserRouter([
   {
@@ -11,11 +11,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "/services",
-        element: <Services />
+        element: <Services />,
+        children: [{
+          path: "/services/:slug",
+          element: <ServiceDetails />
+        }]
       },
       {
         path: "/login",
