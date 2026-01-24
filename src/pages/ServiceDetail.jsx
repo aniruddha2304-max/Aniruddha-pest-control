@@ -100,7 +100,7 @@ const ServiceDetails = () => {
           <div className="bg-white p-6 rounded-xl shadow-md sticky top-24 border border-gray-100">
             <h3 className="text-lg font-bold text-gray-400 uppercase tracking-wider mb-2">Total Price</h3>
             <div className="flex items-end gap-2 mb-6">
-              <span className="text-4xl font-bold text-[#c60000]">{service.price}</span>
+              <span className={`${service.price==="Custom Quote" ? "text-2xl" : "text-4xl"} font-bold text-[#c60000]`}>{service.price}</span>
               <span className="text-gray-400 text-sm mb-1.5 line-through">₹1,500</span>
               <span className="text-green-600 text-sm font-bold mb-1.5 ml-auto">20% OFF</span>
             </div>

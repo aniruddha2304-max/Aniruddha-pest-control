@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   // --- Chat State Logic ---
@@ -28,6 +29,33 @@ const Home = () => {
     }
   };
 
+  const servicesData = [
+    {
+      title: "Cockroach Control",
+      slug: "cockroach_control",
+      desc: "Eliminate harmful cockroaches permanently.",
+      img: "https://tse1.mm.bing.net/th/id/OIP.JMCuAkI-dYwHdUAnU7SmugHaE7"
+    },
+    {
+      title: "Termite Control",
+      slug: "termite_control",
+      desc: "Protect your property from termites.",
+      img: "https://tse2.mm.bing.net/th/id/OIP.tVInq_LoS7N6im_sfR8QXQHaE7"
+    },
+    {
+      title: "Woodborer Control",
+      slug: "woodborer_control",
+      desc: "Save wooden furniture & structures.",
+      img: "https://www.pepcopp.co.in/images/pest-control/pest-innerpage/wood-borer-control.jpg"
+    },
+    {
+      title: "Commercial Pest Control",
+      slug: "commercial_pest_control",
+      desc: "Customized pest solutions for businesses.",
+      img: "https://tse4.mm.bing.net/th/id/OIP.MU5GIRJNGtNP5vvNoG38XAHaEL?pid=Api&P=0&h=180"
+    }
+  ];
+
   return (
     <div className="font-sans m-0">
       {/* */}
@@ -36,12 +64,13 @@ const Home = () => {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Complete Pest Control Solution</h1>
           <p className="text-lg md:text-xl mb-6">Protect Your Home & Business From Harmful Pests</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="services.html" className="bg-[#c60000] text-white px-7 py-3.5 rounded-[30px] text-base font-bold inline-block hover:opacity-90 transition-opacity">
+            <Link to="/services" className="bg-[#c60000] text-white px-7 py-3.5 rounded-[30px] text-base font-bold inline-block hover:opacity-90 transition-opacity">
               View Services
-            </a>
-            <a href="booking.html" className="border-2 border-[#c60000] text-[#c60000] px-[26px] py-3 rounded-[30px] font-bold inline-block hover:bg-[#c60000] hover:text-white transition-colors">
+            </Link>
+            {/* TODO:- add free in url query */}
+            <Link to="/booking" className="border-2 border-[#c60000] text-[#c60000] px-[26px] py-3 rounded-[30px] font-bold inline-block hover:bg-[#c60000] hover:text-white transition-colors">
               Get Free Inspection
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -51,37 +80,17 @@ const Home = () => {
         <h2 className="text-center text-[#c60000] text-3xl font-bold mb-8">Our Popular Services</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-          {/* Service Card 1 */}
-          <div className="border border-[#f7f2f2] p-5 text-center shadow-sm hover:-translate-y-1 transition-transform duration-300 rounded-lg">
-            <img src="https://tse1.mm.bing.net/th/id/OIP.JMCuAkI-dYwHdUAnU7SmugHaE7" alt="Cockroach" className="w-full h-[140px] object-cover rounded-md mb-3" />
-            <h3 className="text-xl font-bold mb-2">Cockroach Control</h3>
-            <p className="text-sm text-gray-600 mb-4">Eliminate harmful cockroaches permanently.</p>
-            <a href="booking.html?service=Cockroach Control" className="bg-[#c60000] text-white px-5 py-2.5 rounded-[30px] font-bold text-sm inline-block hover:bg-[#a00000]">Book Now</a>
-          </div>
-
-          {/* Service Card 2 */}
-          <div className="border border-[#f7f2f2] p-5 text-center shadow-sm hover:-translate-y-1 transition-transform duration-300 rounded-lg">
-            <img src="https://tse2.mm.bing.net/th/id/OIP.tVInq_LoS7N6im_sfR8QXQHaE7" alt="Termite" className="w-full h-[140px] object-cover rounded-md mb-3" />
-            <h3 className="text-xl font-bold mb-2">Termite Control</h3>
-            <p className="text-sm text-gray-600 mb-4">Protect your property from termites.</p>
-            <a href="booking.html?service=Termite Control" className="bg-[#c60000] text-white px-5 py-2.5 rounded-[30px] font-bold text-sm inline-block hover:bg-[#a00000]">Book Now</a>
-          </div>
-
-          {/* Service Card 3 */}
-          <div className="border border-[#f7f2f2] p-5 text-center shadow-sm hover:-translate-y-1 transition-transform duration-300 rounded-lg">
-            <img src="https://www.pepcopp.co.in/images/pest-control/pest-innerpage/wood-borer-control.jpg" alt="Woodborer" className="w-full h-[140px] object-cover rounded-md mb-3" />
-            <h3 className="text-xl font-bold mb-2">Woodborer Control</h3>
-            <p className="text-sm text-gray-600 mb-4">Save wooden furniture & structures.</p>
-            <a href="booking.html?service=Woodborer Control" className="bg-[#c60000] text-white px-5 py-2.5 rounded-[30px] font-bold text-sm inline-block hover:bg-[#a00000]">Book Now</a>
-          </div>
-
-          {/* Service Card 4 */}
-          <div className="border border-[#f7f2f2] p-5 text-center shadow-sm hover:-translate-y-1 transition-transform duration-300 rounded-lg">
-            <img src="https://tse4.mm.bing.net/th/id/OIP.MU5GIRJNGtNP5vvNoG38XAHaEL?pid=Api&P=0&h=180" alt="Commercial" className="w-full h-[140px] object-cover rounded-md mb-3" />
-            <h3 className="text-xl font-bold mb-2">Commercial Pest Control</h3>
-            <p className="text-sm text-gray-600 mb-4">Customized pest solutions for businesses.</p>
-            <a href="booking.html?service=Commercial Pest Control" className="bg-[#c60000] text-white px-5 py-2.5 rounded-[30px] font-bold text-sm inline-block hover:bg-[#a00000]">Book Now</a>
-          </div>
+          {/* Service Card */}
+          {servicesData.map((service) => (
+            <div className="border border-[#f7f2f2] p-5 text-center shadow-sm hover:-translate-y-1 transition-transform duration-300 rounded-lg bg-[#f9f9f9]">
+              <Link to={`/services/${service.slug}`}>
+              <img src={service.img} alt="Cockroach" className="w-full h-[140px] object-cover rounded-md mb-3" />
+              </Link>             
+              <h3 className="text-xl font-bold mb-2"> {service.title} </h3>
+              <p className="text-sm text-gray-600 mb-4"> {service.desc} </p>
+              <Link to={"/booking"} className="bg-[#c60000] text-white px-5 py-2.5 rounded-[30px] font-bold text-sm inline-block hover:bg-[#a00000]">Book Now</Link>
+            </div>
+          ))}
 
         </div>
       </section>
@@ -105,8 +114,8 @@ const Home = () => {
       </a>
 
       {/* */}
-      <div 
-        className="fixed left-5 bottom-[30px] bg-[#c60000] text-white py-3 px-5 rounded-[30px] cursor-pointer z-[1000] shadow-lg hover:scale-105 transition-transform" 
+      <div
+        className="fixed left-5 bottom-[30px] bg-[#c60000] text-white py-3 px-5 rounded-[30px] cursor-pointer z-[1000] shadow-lg hover:scale-105 transition-transform"
         onClick={toggleChat}
       >
         💬 Live Chat
@@ -122,21 +131,20 @@ const Home = () => {
 
           <div className="h-[160px] overflow-y-auto p-2 bg-[#f9f9f9] flex flex-col" ref={chatBodyRef}>
             {messages.map((msg, index) => (
-              <div 
-                key={index} 
-                className={`max-w-[85%] py-1.5 px-2.5 my-1.5 text-sm rounded-lg ${
-                  msg.type === 'bot' 
-                    ? 'bg-white border border-[#ddd] self-start rounded-tl-none' 
+              <div
+                key={index}
+                className={`max-w-[85%] py-1.5 px-2.5 my-1.5 text-sm rounded-lg ${msg.type === 'bot'
+                    ? 'bg-white border border-[#ddd] self-start rounded-tl-none'
                     : 'bg-[#c60000] text-white self-end text-right rounded-tr-none'
-                }`}
+                  }`}
               >
                 {msg.text}
               </div>
             ))}
           </div>
-          <input 
-            type="text" 
-            placeholder="Type message..." 
+          <input
+            type="text"
+            placeholder="Type message..."
             value={chatInput}
             onChange={(e) => setChatInput(e.target.value)}
             onKeyDown={handleSendMsg}

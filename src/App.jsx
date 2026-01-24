@@ -6,6 +6,7 @@ function App() {
   return (
     <>
       <Navbar />
+      {/* TODO :- custom cursor of spray or gel */}
       <Outlet />
       <Footer />
       {/* <script>

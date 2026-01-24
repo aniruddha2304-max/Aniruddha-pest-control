@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
     <footer className="bg-[#1a1a1a] text-white pt-[50px] pb-[20px] font-sans">
       <div className="max-w-[1200px] mx-auto px-6">
-        
+
         {/* TOP SECTION: Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-          
+
           {/* Column 1: Company Info */}
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -29,11 +30,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4 border-l-4 border-[#c60000] pl-3">Quick Links</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="index.html" className="hover:text-[#c60000] transition-colors">Home</a></li>
-              <li><a href="about.html" className="hover:text-[#c60000] transition-colors">About Us</a></li>
-              <li><a href="services.html" className="hover:text-[#c60000] transition-colors">Services</a></li>
-              <li><a href="booking.html" className="hover:text-[#c60000] transition-colors">Book Now</a></li>
-              <li><a href="login.html" className="hover:text-[#c60000] transition-colors">Login</a></li>
+              <li><Link to="/" className="hover:text-[#c60000] transition-colors">Home</Link></li>
+              <li><Link to="/about" className="hover:text-[#c60000] transition-colors">About Us</Link></li>
+              <li><Link to="/services" className="hover:text-[#c60000] transition-colors">Services</Link></li>
+              <li><Link to="/booking" className="hover:text-[#c60000] transition-colors">Book Now</Link></li>
+              <li><Link to="/login" className="hover:text-[#c60000] transition-colors">Login</Link></li>
             </ul>
           </div>
 
@@ -41,11 +42,12 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4 border-l-4 border-[#c60000] pl-3">Our Services</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="services.html" className="hover:text-[#c60000] transition-colors">Cockroach Control</a></li>
-              <li><a href="services.html" className="hover:text-[#c60000] transition-colors">Termite Treatment</a></li>
-              <li><a href="services.html" className="hover:text-[#c60000] transition-colors">Bed Bug Removal</a></li>
-              <li><a href="services.html" className="hover:text-[#c60000] transition-colors">Rodent Control</a></li>
-              <li><a href="services.html" className="hover:text-[#c60000] transition-colors">Commercial Pest Control</a></li>
+              {/* Linking to dynamic slugs for better UX */}
+              <li><Link to="/services/cockroach_control" className="hover:text-[#c60000] transition-colors">Cockroach Control</Link></li>
+              <li><Link to="/services/termite_control" className="hover:text-[#c60000] transition-colors">Termite Treatment</Link></li>
+              <li><Link to="/services/bed_bug_control" className="hover:text-[#c60000] transition-colors">Bed Bug Removal</Link></li>
+              <li><Link to="/services/rodent_control" className="hover:text-[#c60000] transition-colors">Rodent Control</Link></li>
+              <li><Link to="/services/commercial_pest_control" className="hover:text-[#c60000] transition-colors">Commercial Pest Control</Link></li>
             </ul>
           </div>
 
@@ -54,26 +56,26 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4 border-l-4 border-[#c60000] pl-3">Contact Us</h3>
             <div className="space-y-3 text-sm text-gray-400">
               <p className="flex items-start gap-2">
-                <span>📍</span> 
+                <span>📍</span>
                 123, Pest Control Street, Mumbai, Maharashtra, 400001
               </p>
               <p className="flex items-center gap-2">
-                <span>📞</span> 
-                <a href="tel:7045420139" className="hover:text-[#c60000] transition-colors">+91 70454 20139</a>
+                <span>📞</span>
+                <a href="tel:7045420139" className="hover:text-[#c60000] transition-colors">+91 99872 87903</a>
               </p>
               <p className="flex items-center gap-2">
-                <span>✉️</span> 
-                <a href="mailto:info@aniruddhapc.com" className="hover:text-[#c60000] transition-colors">info@aniruddhapc.com</a>
+                <span>✉️</span>
+                <a href="mailto:info@aniruddhapc.com" className="hover:text-[#c60000] transition-colors"> aniruddha2304@gmail.com </a>
               </p>
             </div>
-            
+
             {/* CTA BUTTON */}
-            <a 
-              href="booking.html" 
+            <Link
+              to="/booking"
               className="inline-block mt-5 bg-[#c60000] text-white py-2.5 px-6 rounded-full font-bold text-sm hover:bg-red-700 transition-colors shadow-lg"
             >
               Book an Inspection
-            </a>
+            </Link>
           </div>
         </div>
 
