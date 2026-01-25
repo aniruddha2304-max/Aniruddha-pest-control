@@ -1,8 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { auth } from '../lib/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   // State for Chat Visibility
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [userData, setUserData] = useState({
+    "name": "",
+    "email": "",
+    "phone": "",
+    "password": "",
+    "confirmPassword": ""
+  });
+  const navigate = useNavigate();
   
   // State for Chat Messages
   const [messages, setMessages] = useState([
@@ -11,6 +22,12 @@ const Signup = () => {
   
   // State for Chat Input
   const [chatInput, setChatInput] = useState("");
+
+  // State for Password Visibility
+  const [showPassword, setShowPassword] = useState({
+    password: false,
+    confirmPassword: false
+  });
 
   // Ref to auto-scroll chat to bottom
   const chatBodyRef = useRef(null);
@@ -22,10 +39,30 @@ const Signup = () => {
     }
   }, [messages, isChatOpen]);
 
+  const changeInput = (name, value)=>{
+    setUserData((prev)=>({...prev, [name]: value}));
+  }
+
+  // Toggle Password Visibility
+  const togglePasswordVisibility = (field) => {
+    setShowPassword((prev) => ({
+      ...prev,
+      [field]: !prev[field]
+    }));
+  };
+
   // Handle Form Submission
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
+    // debugger;
     e.preventDefault();
-    alert("✅ Signup Successful!");
+    try{
+      const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+      console.log(userCredential);
+      navigate("/");
+    }
+    catch(err){
+      console.error("Error while signingup: ", err.message);
+    }
   };
 
   // Toggle Chat
@@ -60,34 +97,80 @@ const Signup = () => {
         <form onSubmit={handleSignup}>
           <input 
             type="text" 
-            placeholder="Full Name" 
+            placeholder="Full Name"
+            name="name" 
+            value={userData.name}
             required 
             className="w-full p-3 my-2.5 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
+            onChange={(e)=>{changeInput(e.target.name, e.target.value)}}
           />
           <input 
             type="email" 
             placeholder="Email Address" 
+            name="email"
+            value={userData.email}
             required 
             className="w-full p-3 my-2.5 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
+            onChange={(e)=>{changeInput(e.target.name, e.target.value)}}
           />
           <input 
             type="tel" 
             placeholder="Mobile Number" 
+            name="phone"
+            value={userData.phone}
             required 
             className="w-full p-3 my-2.5 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
+            onChange={(e)=>{changeInput(e.target.name, e.target.value)}}
           />
-          <input 
-            type="password" 
-            placeholder="Password" 
-            required 
-            className="w-full p-3 my-2.5 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
-          />
-          <input 
-            type="password" 
-            placeholder="Confirm Password" 
-            required 
-            className="w-full p-3 my-2.5 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
-          />
+          {/* Password Field with Eye Toggle */}
+          <div className="relative my-2.5">
+            <input 
+              type={showPassword.password ? "text" : "password"} 
+              placeholder="Password" 
+              name="password"
+              value={userData.password}
+              required 
+              className="w-full p-3 pr-10 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
+              onChange={(e)=>{changeInput(e.target.name, e.target.value)}}
+            />
+            <button
+              type="button"
+              onClick={() => togglePasswordVisibility('password')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#666] hover:text-[#c60000] transition-colors cursor-pointer bg-transparent border-none outline-none"
+              aria-label={showPassword.password ? "Hide password" : "Show password"}
+            >
+              {showPassword.password ? (
+                <i className="ri-eye-line"></i>
+              ) : (
+                <i className="ri-eye-off-line"></i>
+              )}
+            </button>
+          </div>
+
+          {/* Confirm Password Field with Eye Toggle */}
+          <div className="relative my-2.5">
+            <input 
+              type={showPassword.confirmPassword ? "text" : "password"} 
+              placeholder="Confirm Password" 
+              name="confirmPassword"
+              value={userData.confirmPassword}
+              required 
+              className="w-full p-3 pr-10 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
+              onChange={(e)=>{changeInput(e.target.name, e.target.value)}}
+            />
+            <button
+              type="button"
+              onClick={() => togglePasswordVisibility('confirmPassword')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#666] hover:text-[#c60000] transition-colors cursor-pointer bg-transparent border-none outline-none"
+              aria-label={showPassword.confirmPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword.confirmPassword ? (
+                <i className="ri-eye-line"></i>
+              ) : (
+                <i className="ri-eye-off-line"></i>
+              )}
+            </button>
+          </div>
           
           <button 
             type="submit"

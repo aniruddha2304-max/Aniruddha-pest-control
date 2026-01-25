@@ -81,8 +81,8 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
           {/* Service Card */}
-          {servicesData.map((service) => (
-            <div className="border border-[#f7f2f2] p-5 text-center shadow-sm hover:-translate-y-1 transition-transform duration-300 rounded-lg bg-[#f9f9f9]">
+          {servicesData.map((service, i) => (
+            <div key={i} className="border border-[#f7f2f2] p-5 text-center shadow-sm hover:-translate-y-1 transition-transform duration-300 rounded-lg bg-[#f9f9f9]">
               <Link to={`/services/${service.slug}`}>
               <img src={service.img} alt="Cockroach" className="w-full h-[140px] object-cover rounded-md mb-3" />
               </Link>             
