@@ -20,9 +20,9 @@ const Footer = () => {
             </p>
             {/* Social Icons Placeholder */}
             <div className="flex gap-4">
-              <a href="#" target='_blank' className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors"> <i class="ri-facebook-line scale-125"></i> </a>
-              <a href="#" target='_blank' className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors"> <i class="ri-twitter-x-line"></i> </a>
-              <a href="https://www.instagram.com/aniruddhapest_control_services/" target='_blank' className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors"> <i class="ri-instagram-line"></i> </a>
+              <a href="#" target='_blank' className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors"> <i className="ri-facebook-line scale-125"></i> </a>
+              <a href="#" target='_blank' className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors"> <i className="ri-twitter-x-line"></i> </a>
+              <a href="https://www.instagram.com/aniruddhapest_control_services/" target='_blank' className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors"> <i className="ri-instagram-line"></i> </a>
             </div>
           </div>
 

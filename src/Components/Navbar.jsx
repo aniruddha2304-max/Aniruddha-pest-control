@@ -7,7 +7,7 @@ const Navbar = () => {
   const servicesData = [
     { "title": "Cockroach Control", "slug": "cockroach_control" },
     { "title": "Termite Treatment", "slug": "termite_control" },
-    { "title": "Bed Bug Removal", "slug": "bed_bug_removal" },
+    { "title": "Bed Bug Removal", "slug": "bed_bug_control" },
     { "title": "Rodent Control", "slug": "rodent_control" },
     { "title": "Commercial Pest Control", "slug": "commercial_pest_control" }
   ];
@@ -19,13 +19,13 @@ const Navbar = () => {
   }
 
   const navLinkStyles = ({ isActive }) => {
-    return `font-bold py-1.5 px-3 rounded-md transition-colors duration-300 no-underline ${
-      isActive ? "bg-[#c60000] text-white" : "text-[#111] hover:bg-[#c60000] hover:text-white"
+    return `font-bold mx-3 transition-colors duration-300 no-underline ${
+      isActive ? "text-[#c60000] border-b-3 border-b-[#c60000]" : "text-[#111] hover:text-[#c60000]"
     }`;
   };
 
   return (
-    <nav className="bg-white py-2.5 px-6 flex justify-between items-center shadow-sm sticky top-0 z-[1000]">
+    <nav className="bg-white py-1.5 px-6 flex justify-between items-center shadow-sm sticky top-0 z-[1000]">
       {/* 1. Left Section: Logo */}
       <div className="flex-1">
         <div className="w-[140px]">
