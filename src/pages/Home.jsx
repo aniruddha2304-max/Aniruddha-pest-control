@@ -67,10 +67,6 @@ const Home = () => {
             <Link to="/services" className="bg-[#c60000] text-white px-7 py-3.5 rounded-[30px] text-base font-bold inline-block hover:opacity-90 transition-opacity">
               View Services
             </Link>
-            {/* TODO:- add free in url query */}
-            <Link to="/booking" className="border-2 border-[#c60000] text-[#c60000] px-[26px] py-3 rounded-[30px] font-bold inline-block hover:bg-[#c60000] hover:text-white transition-colors">
-              Get Free Inspection
-            </Link>
           </div>
         </div>
       </section>

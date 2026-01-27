@@ -20,9 +20,9 @@ const Footer = () => {
             </p>
             {/* Social Icons Placeholder */}
             <div className="flex gap-4">
-              <a href="#" className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors">F</a>
-              <a href="#" className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors">T</a>
-              <a href="#" className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors">I</a>
+              <a href="#" target='_blank' className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors"> <i class="ri-facebook-line scale-125"></i> </a>
+              <a href="#" target='_blank' className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors"> <i class="ri-twitter-x-line"></i> </a>
+              <a href="https://www.instagram.com/aniruddhapest_control_services/" target='_blank' className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#c60000] transition-colors"> <i class="ri-instagram-line"></i> </a>
             </div>
           </div>
 
@@ -68,14 +68,6 @@ const Footer = () => {
                 <a href="mailto:info@aniruddhapc.com" className="hover:text-[#c60000] transition-colors"> aniruddha2304@gmail.com </a>
               </p>
             </div>
-
-            {/* CTA BUTTON */}
-            <Link
-              to="/booking"
-              className="inline-block mt-5 bg-[#c60000] text-white py-2.5 px-6 rounded-full font-bold text-sm hover:bg-red-700 transition-colors shadow-lg"
-            >
-              Book an Inspection
-            </Link>
           </div>
         </div>
 
