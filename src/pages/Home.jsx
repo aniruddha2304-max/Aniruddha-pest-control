@@ -78,13 +78,15 @@ const Home = () => {
 
           {/* Service Card */}
           {servicesData.map((service, i) => (
-            <div key={i} className="border border-[#f7f2f2] p-5 text-center shadow-sm hover:-translate-y-1 transition-transform duration-300 rounded-lg bg-[#f9f9f9]">
+            <div key={i} className="border border-[#f7f2f2] text-center shadow-sm hover:-translate-y-1 transition-transform duration-300 rounded-lg bg-[#f9f9f9] flex flex-col">
               <Link to={`/services/${service.slug}`}>
-              <img src={service.img} alt="Cockroach" className="w-full h-[140px] object-cover rounded-md mb-3" />
-              </Link>             
-              <h3 className="text-xl font-bold mb-2"> {service.title} </h3>
-              <p className="text-sm text-gray-600 mb-4"> {service.desc} </p>
-              <Link to={"/booking"} className="bg-[#c60000] text-white px-5 py-2.5 rounded-[30px] font-bold text-sm inline-block hover:bg-[#a00000]">Book Now</Link>
+                <img src={service.img} alt="Cockroach" className="w-full h-[140px] object-cover" />
+              </Link>
+              <div className='p-5 flex flex-col justify-end items-center flex-1'>
+                <h3 className="text-xl font-bold mb-2"> {service.title} </h3>
+                <p className="text-sm text-gray-600 mb-4"> {service.desc} </p>
+                <Link to={"/booking"} className="bg-[#c60000] w-fit  text-white px-5 py-2.5 mt-auto rounded-[30px] font-bold text-sm inline-block hover:bg-[#a00000]">Book Now</Link>
+              </div>
             </div>
           ))}
 
@@ -130,8 +132,8 @@ const Home = () => {
               <div
                 key={index}
                 className={`max-w-[85%] py-1.5 px-2.5 my-1.5 text-sm rounded-lg ${msg.type === 'bot'
-                    ? 'bg-white border border-[#ddd] self-start rounded-tl-none'
-                    : 'bg-[#c60000] text-white self-end text-right rounded-tr-none'
+                  ? 'bg-white border border-[#ddd] self-start rounded-tl-none'
+                  : 'bg-[#c60000] text-white self-end text-right rounded-tr-none'
                   }`}
               >
                 {msg.text}

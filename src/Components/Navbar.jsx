@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import { signOut } from 'firebase/auth';
+import React from 'react';
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { auth, useAuth } from '../context/Firebase';
 
 const Navbar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
+  const { user } = useAuth(); // Use custom hook instead
   const navigate = useNavigate();
   const servicesData = [
     { "title": "Cockroach Control", "slug": "cockroach_control" },
@@ -11,17 +14,16 @@ const Navbar = () => {
     { "title": "Rodent Control", "slug": "rodent_control" },
     { "title": "Commercial Pest Control", "slug": "commercial_pest_control" }
   ];
-  const handleSearch = (e)=>{
-    if(e.key==="Enter"){
-      navigate("/services/"+e.target.value);
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      navigate("/services/" + e.target.value);
       e.target.value = "";
     }
   }
 
   const navLinkStyles = ({ isActive }) => {
-    return `font-bold mx-3 transition-colors duration-300 no-underline ${
-      isActive ? "text-[#c60000] border-b-3 border-b-[#c60000]" : "text-[#111] hover:text-[#c60000]"
-    }`;
+    return `font-bold mx-3 transition-colors duration-300 no-underline ${isActive ? "text-[#c60000] border-b-3 border-b-[#c60000]" : "text-[#111] hover:text-[#c60000]"
+      }`;
   };
 
   return (
@@ -38,7 +40,7 @@ const Navbar = () => {
       {/* 2. Center Section: Main Navigation */}
       <div className="flex-[2] flex justify-center items-center gap-2">
         <NavLink to="/" className={navLinkStyles}>Home</NavLink>
-        
+
         <div
           className="relative group py-2"
           onMouseEnter={() => setIsDropdownOpen(true)}
@@ -74,9 +76,9 @@ const Navbar = () => {
       <div className="flex-1 flex items-center justify-end gap-4">
         {/* Search Bar */}
         <div className="relative hidden lg:block">
-          <input 
-            type="text" 
-            placeholder="Search..." 
+          <input
+            type="text"
+            placeholder="Search..."
             className="bg-gray-100 border-none rounded-full py-2 px-4 pl-10 text-sm focus:ring focus:ring-[#c60000] outline-none w-56"
             onKeyDown={handleSearch}
           />
@@ -84,18 +86,23 @@ const Navbar = () => {
         </div>
 
         {/* Auth Buttons */}
-        <div className="flex items-center gap-6">
-          <NavLink to="/login" className="text-sm font-bold text-[#111] hover:text-[#c60000] transition-colors">
-            Login
-          </NavLink>
-          <NavLink 
-            to="/signup" 
-            className="bg-[#c60000] text-white text-sm font-bold py-2 px-5 rounded-full hover:bg-[#a00000] transition-colors"
-          >
-            Signup
-          </NavLink>
+        {user ? (<div className="flex items-center gap-6">
+          <button onClick={()=>{signOut(auth)}} className="px-4 py-2 border border-gray-300 text-gray-600 rounded-full text-sm font-medium hover:border-red-500 hover:text-red-600 hover:bg-red-50 transition-all duration-200">
+            Logout
+          </button>
+          </div>) :
+          (<div className="flex items-center gap-6">
+            <NavLink to="/login" className="text-sm font-bold text-[#111] hover:text-[#c60000] transition-colors">
+              Login
+            </NavLink>
+            <NavLink
+              to="/signup"
+              className="bg-[#c60000] text-white text-sm font-bold py-2 px-5 rounded-full hover:bg-[#a00000] transition-colors"
+            >
+              Signup
+            </NavLink>
+          </div>)}
         </div>
-      </div>
     </nav>
   );
 };

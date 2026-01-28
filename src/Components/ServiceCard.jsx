@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const ServiceCard = ({ service, index, addToCart }) => {
   const [serviceCount, setServiceCount] = useState(0);
+  const navigate = useNavigate();
   return (
     <div
-      className="w-full bg-white p-6 rounded-2xl border border-transparent hover:border-gray-200 hover:shadow-md flex justify-between items-start gap-6 transition-all group"
+      className="w-full bg-white p-6 rounded-2xl border border-transparent hover:border-gray-200 hover:shadow-md flex justify-between items-start gap-6 transition-all group relative z-0"
       key={index}
+      onClick={() => { navigate(`/services/${service.id}`) }}
     >
       {/* LEFT CONTENT */}
       <div className="flex-1">
@@ -49,19 +51,19 @@ const ServiceCard = ({ service, index, addToCart }) => {
           className="w-full h-full object-cover rounded-2xl shadow-sm"
         />
 
-        {serviceCount>0 ? (
-          <div className='absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white text-[#673ab7] border border-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] px-4 py-2 rounded-xl font-bold text-sm hover:scale-105 active:scale-95 transition-all uppercase flex items-center gap-3 text-3xl'>
-            <i class="ri-subtract-fill hover:cursor-pointer" onClick={()=>{addToCart(service, serviceCount); setServiceCount(prev=>prev - 1)}}></i>
+        {serviceCount > 0 ? (
+          <div className='z-20 absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white text-[#673ab7] border border-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] px-4 py-2 rounded-xl font-bold text-sm hover:scale-105 active:scale-95 transition-all uppercase flex items-center gap-3 text-3xl'>
+            <i class="ri-subtract-fill hover:cursor-pointer relative z-20" onClick={(e) => { e.stopPropagation(); addToCart(service, serviceCount); setServiceCount(prev => prev - 1) }}></i>
             {serviceCount}
-            <i class="ri-add-line hover:cursor-pointer" onClick={()=>{addToCart(service); setServiceCount(prev=>prev + 1)}}></i>
+            <i class="ri-add-line hover:cursor-pointer relative z-20" onClick={(e) => { e.stopPropagation(); addToCart(service); setServiceCount(prev => prev + 1) }}></i>
           </div>
         ) : (<button
           onClick={(e) => {
             e.stopPropagation(); // Prevents link trigger if nested
             addToCart(service);
-            setServiceCount(prev=>prev + 1);
+            setServiceCount(prev => prev + 1);
           }}
-          className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white text-[#673ab7] border border-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] px-8 py-2 rounded-xl font-bold text-sm hover:scale-105 active:scale-95 transition-all uppercase"
+          className="z-20 absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white text-[#673ab7] border border-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] px-8 py-2 rounded-xl font-bold text-sm hover:scale-105 active:scale-95 transition-all uppercase"
         >
           Add
         </button>)}

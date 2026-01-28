@@ -1,27 +1,38 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { auth } from '../lib/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Chatbox from '../Components/Chatbox';
+import { useFirebase } from '../context/Firebase';
+
+// Firebase error messages
+const getFirebaseErrorMessage = (code) => {
+  const errorMessages = {
+    'auth/email-already-in-use': 'Email is already registered. Please login or use another email.',
+    'auth/invalid-email': 'Please enter a valid email address.',
+    'auth/weak-password': 'Password must be at least 6 characters long.',
+    'auth/user-not-found': 'No account found with this email address.',
+    'auth/wrong-password': 'Incorrect password. Please try again.',
+    'auth/operation-not-allowed': 'Sign up is currently disabled. Please try again later.',
+    'auth/too-many-requests': 'Too many failed attempts. Please try again later.',
+    'auth/network-request-failed': 'Network error. Please check your internet connection.',
+  };
+  return errorMessages[code] || 'An error occurred. Please try again.';
+};
 
 const Signup = () => {
   // State for Chat Visibility
-  const [isChatOpen, setIsChatOpen] = useState(false);
   const [userData, setUserData] = useState({
     "name": "",
     "email": "",
     "phone": "",
-    "password": "",
-    "confirmPassword": ""
+    "addresss": "Borivali west, mumbai"
   });
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  
-  // State for Chat Messages
-  const [messages, setMessages] = useState([
-    { type: 'bot', text: 'Hello 👋 Need help?' }
-  ]);
-  
-  // State for Chat Input
-  const [chatInput, setChatInput] = useState("");
+
+  const firebase = useFirebase();
 
   // State for Password Visibility
   const [showPassword, setShowPassword] = useState({
@@ -29,15 +40,6 @@ const Signup = () => {
     confirmPassword: false
   });
 
-  // Ref to auto-scroll chat to bottom
-  const chatBodyRef = useRef(null);
-
-  // Auto-scroll effect
-  useEffect(() => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
-    }
-  }, [messages, isChatOpen]);
 
   const changeInput = (name, value)=>{
     setUserData((prev)=>({...prev, [name]: value}));
@@ -53,37 +55,62 @@ const Signup = () => {
 
   // Handle Form Submission
   const handleSignup = async (e) => {
-    // debugger;
     e.preventDefault();
-    try{
-      const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
-      console.log(userCredential);
-      navigate("/");
-    }
-    catch(err){
-      console.error("Error while signingup: ", err.message);
-    }
-  };
+    setError("");
+    setLoading(true);
 
-  // Toggle Chat
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
+    try {
+      // Validate passwords match
+      if (password !== confirmPassword) {
+        setError("Passwords do not match.");
+        setLoading(false);
+        return;
+      }
 
-  // Handle Chat Message Sending
-  const handleChatKeyDown = (e) => {
-    if (e.key === "Enter" && chatInput.trim() !== "") {
-      // 1. Add User Message
-      setMessages(prev => [...prev, { type: 'user', text: chatInput }]);
+      // Validate password strength
+      if (password.length < 6) {
+        setError("Password must be at least 6 characters long.");
+        setLoading(false);
+        return;
+      }
+
+      const userCredential = await firebase.signupWithEmailAndPassword(userData.email, password);
+      console.log("User signup success", userCredential);
       
-      setChatInput(""); // Clear input
-
-      // 2. Simulate Bot Response after delay
-      setTimeout(() => {
-        setMessages(prev => [...prev, { type: 'bot', text: 'Our team will reply soon.' }]);
-      }, 600);
+      try {
+        await firebase.addUser(userData);
+        console.log("User data added");
+        navigate("/");
+      } catch (err) {
+        // setError("Account created but failed to save profile. Please contact support.");
+        console.log("Error storing user data:", err);
+      }
+    } catch (err) {
+      const errorMessage = getFirebaseErrorMessage(err.code);
+      setError(errorMessage);
+      console.error("Signup error:", err);
+    } finally {
+      setLoading(false);
     }
   };
+
+
+  // HANDLE GOOGLE SIGNUP
+  const handleGoogleSignup = async () => {
+    setError("");
+    setLoading(true);
+    try {
+      const res = await firebase.signinWithGoogle();
+      console.log("Success Google Signup");
+      navigate("/");
+    } catch (error) {
+      const errorMessage = getFirebaseErrorMessage(error.code);
+      setError(errorMessage);
+      console.log("Google signup error:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     // Main Container with background color and full height
@@ -93,6 +120,12 @@ const Signup = () => {
       <div className="w-full max-w-[420px] bg-white p-[30px] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.15)] mx-4">
         <h2 className="text-center text-[#c60000] text-2xl font-bold mb-2.5">Create Account</h2>
         <p className="text-center text-[#666] text-sm mb-5">Register to book pest control services</p>
+
+        {error && (
+          <p className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md text-sm mb-4">
+            {error}
+          </p>
+        )}
 
         <form onSubmit={handleSignup}>
           <input 
@@ -128,10 +161,10 @@ const Signup = () => {
               type={showPassword.password ? "text" : "password"} 
               placeholder="Password" 
               name="password"
-              value={userData.password}
+              value={password}
               required 
               className="w-full p-3 pr-10 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
-              onChange={(e)=>{changeInput(e.target.name, e.target.value)}}
+              onChange={(e)=>{setPassword(e.target.value)}}
             />
             <button
               type="button"
@@ -153,10 +186,10 @@ const Signup = () => {
               type={showPassword.confirmPassword ? "text" : "password"} 
               placeholder="Confirm Password" 
               name="confirmPassword"
-              value={userData.confirmPassword}
+              value={confirmPassword}
               required 
               className="w-full p-3 pr-10 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
-              onChange={(e)=>{changeInput(e.target.name, e.target.value)}}
+              onChange={(e)=>{setConfirmPassword(e.target.value)}}
             />
             <button
               type="button"
@@ -171,63 +204,40 @@ const Signup = () => {
               )}
             </button>
           </div>
+
+
           
           <button 
             type="submit"
-            className="w-full bg-gradient-to-r from-[#c60000] to-[#ff4d4d] text-white p-3.5 border-none rounded-[30px] text-base font-bold cursor-pointer mt-2.5 hover:opacity-90 transition-opacity duration-300"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-[#c60000] to-[#ff4d4d] text-white p-3.5 border-none rounded-[30px] text-base font-bold cursor-pointer mt-2.5 hover:opacity-90 transition-opacity duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Create Account
+            {loading ? "Creating Account..." : "Create Account"}
+          </button>
+
+          <div className="relative my-5 flex items-center">
+            <div className="flex-grow border-t border-[#ccc]"></div>
+            <span className="px-3 text-[#666] text-sm">OR</span>
+            <div className="flex-grow border-t border-[#ccc]"></div>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleGoogleSignup}
+            disabled={loading}
+            className="w-full bg-white border border-[#ccc] text-[#333] p-3.5 rounded-[30px] text-base font-bold cursor-pointer hover:bg-[#f9f9f9] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <img src="/google-logo.png" alt="" className='h-5 w-5'/>
+            Sign Up with Google
           </button>
         </form>
 
         <div className="text-center mt-[15px] text-sm">
-          Already have an account? <a href="login.html" className="text-[#c60000] font-bold no-underline hover:underline">Login</a>
+          Already have an account? <Link to="/login" className="text-[#c60000] font-bold no-underline hover:underline">Login</Link>
         </div>
       </div>
 
-      {/* LIVE CHAT LAUNCHER */}
-      <div 
-        className="fixed left-5 bottom-[30px] bg-[#c60000] text-white px-5 py-3 rounded-[30px] cursor-pointer shadow-[0_4px_10px_rgba(0,0,0,0.2)] z-[1000] hover:scale-105 transition-transform" 
-        onClick={toggleChat}
-      >
-        💬 Live Chat
-      </div>
-
-      {/* CHAT BOX (Conditional Rendering) */}
-      {isChatOpen && (
-        <div className="fixed left-5 bottom-[90px] w-[260px] bg-white rounded-[10px] shadow-[0_8px_25px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden z-[1001]">
-          {/* Chat Header */}
-          <div className="bg-[#c60000] text-white p-2.5 flex justify-between items-center">
-            Support 
-            <span onClick={toggleChat} className="cursor-pointer font-bold hover:text-gray-200">✖</span>
-          </div>
-          
-          {/* Chat Body */}
-          <div className="h-[160px] overflow-y-auto p-2 bg-[#f9f9f9] flex flex-col scroll-smooth" ref={chatBodyRef}>
-            {messages.map((msg, index) => (
-              <div 
-                key={index} 
-                className={`max-w-[85%] px-2.5 py-1.5 my-1.5 text-sm ${
-                  msg.type === 'user' 
-                    ? 'bg-[#c60000] text-white rounded-t-[10px] rounded-bl-[10px] self-end text-right' 
-                    : 'bg-white border border-[#ddd] text-black rounded-t-[10px] rounded-br-[10px] self-start'
-                }`}
-              >
-                {msg.text}
-              </div>
-            ))}
-          </div>
-
-          <input 
-            type="text" 
-            placeholder="Type message..." 
-            value={chatInput}
-            onChange={(e) => setChatInput(e.target.value)}
-            onKeyDown={handleChatKeyDown}
-            className="border-none border-t border-[#ddd] p-2.5 w-full outline-none text-sm"
-          />
-        </div>
-      )}
+      <Chatbox />
 
     </div>
   );
