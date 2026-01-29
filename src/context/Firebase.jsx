@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
 import { createContext, useContext, useEffect, useState } from "react";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 export const FirebaseContext = createContext();
 
@@ -24,27 +25,32 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getDatabase(app);
 const googleProvider = new GoogleAuthProvider();
+const firestore = getFirestore();
 
 
 export const FirebaseProvider = ({ children }) => {
 
+// Signup email
   const signupWithEmailAndPassword = ((email, password) =>{
     return createUserWithEmailAndPassword(auth, email, password);
   })
 
+// Login / Signup Google
   const signinWithGoogle = ()=>{
     return signInWithPopup(auth, googleProvider);
   }
 
+// Login Email 
   const loginWithEmailAndPassword = (email, password)=> {
     return signInWithEmailAndPassword(auth, email, password);
   }
-  const addUser = ((key, data) =>{
-    set(ref(db, key), data);
-  });
+
+  const addUser = (data)=>{
+    return addDoc(collection(firestore, "users"), {data});
+  }
 
   return (
-    <FirebaseContext.Provider value={{signupWithEmailAndPassword, addUser, signinWithGoogle, loginWithEmailAndPassword}}>
+    <FirebaseContext.Provider value={{signupWithEmailAndPassword, signinWithGoogle, loginWithEmailAndPassword, addUser}}>
       {children}
     </FirebaseContext.Provider>
   )

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Chatbox from '../Components/Chatbox';
 import { useFirebase } from '../context/Firebase';
+import { Region } from '../JSON_Data/Region';
 
 // Firebase error messages
 const getFirebaseErrorMessage = (code) => {
@@ -24,7 +25,8 @@ const Signup = () => {
     "name": "",
     "email": "",
     "phone": "",
-    "addresss": "Borivali west, mumbai"
+    "address": "",
+    "region": "",
   });
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -41,8 +43,8 @@ const Signup = () => {
   });
 
 
-  const changeInput = (name, value)=>{
-    setUserData((prev)=>({...prev, [name]: value}));
+  const changeInput = (name, value) => {
+    setUserData((prev) => ({ ...prev, [name]: value }));
   }
 
   // Toggle Password Visibility
@@ -76,7 +78,7 @@ const Signup = () => {
 
       const userCredential = await firebase.signupWithEmailAndPassword(userData.email, password);
       console.log("User signup success", userCredential);
-      
+
       try {
         await firebase.addUser(userData);
         console.log("User data added");
@@ -115,9 +117,9 @@ const Signup = () => {
   return (
     // Main Container with background color and full height
     <div className="min-h-screen bg-[#f4f4f4] font-sans flex items-start justify-center pt-[60px] pb-10">
-      
+
       {/* SIGNUP CARD */}
-      <div className="w-full max-w-[420px] bg-white p-[30px] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.15)] mx-4">
+      <div className="w-full max-w-[640px] bg-white p-[30px] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.15)] mx-4">
         <h2 className="text-center text-[#c60000] text-2xl font-bold mb-2.5">Create Account</h2>
         <p className="text-center text-[#666] text-sm mb-5">Register to book pest control services</p>
 
@@ -127,44 +129,67 @@ const Signup = () => {
           </p>
         )}
 
-        <form onSubmit={handleSignup}>
-          <input 
-            type="text" 
+        <form onSubmit={handleSignup} className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+          <input
+            type="text"
             placeholder="Full Name"
-            name="name" 
+            name="name"
             value={userData.name}
-            required 
+            required
             className="w-full p-3 my-2.5 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
-            onChange={(e)=>{changeInput(e.target.name, e.target.value)}}
+            onChange={(e) => { changeInput(e.target.name, e.target.value) }}
           />
-          <input 
-            type="email" 
-            placeholder="Email Address" 
+          <input
+            type="email"
+            placeholder="Email Address"
             name="email"
             value={userData.email}
-            required 
+            required
             className="w-full p-3 my-2.5 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
-            onChange={(e)=>{changeInput(e.target.name, e.target.value)}}
+            onChange={(e) => { changeInput(e.target.name, e.target.value) }}
           />
-          <input 
-            type="tel" 
-            placeholder="Mobile Number" 
+          <input
+            type="tel"
+            placeholder="Mobile Number"
             name="phone"
             value={userData.phone}
-            required 
+            required
             className="w-full p-3 my-2.5 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
-            onChange={(e)=>{changeInput(e.target.name, e.target.value)}}
+            onChange={(e) => { changeInput(e.target.name, e.target.value) }}
+          />
+          <select
+            name="region"
+            value={userData.region}
+            required
+            className="w-full p-3 my-2.5 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
+            onChange={(e) => { changeInput(e.target.name, e.target.value) }}
+          >
+            <option value="" className='text-gray-400'>Select Region</option>
+            {Region.map((region) => (
+              <option key={region.id} value={region.name}>
+                {region.name}
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            placeholder="Full Address"
+            name="address"
+            value={userData.address}
+            required
+            className="w-full p-3 my-2.5 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000] col-span-2"
+            onChange={(e) => { changeInput(e.target.name, e.target.value) }}
           />
           {/* Password Field with Eye Toggle */}
           <div className="relative my-2.5">
-            <input 
-              type={showPassword.password ? "text" : "password"} 
-              placeholder="Password" 
+            <input
+              type={showPassword.password ? "text" : "password"}
+              placeholder="Password"
               name="password"
               value={password}
-              required 
+              required
               className="w-full p-3 pr-10 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
-              onChange={(e)=>{setPassword(e.target.value)}}
+              onChange={(e) => { setPassword(e.target.value) }}
             />
             <button
               type="button"
@@ -182,14 +207,14 @@ const Signup = () => {
 
           {/* Confirm Password Field with Eye Toggle */}
           <div className="relative my-2.5">
-            <input 
-              type={showPassword.confirmPassword ? "text" : "password"} 
-              placeholder="Confirm Password" 
+            <input
+              type={showPassword.confirmPassword ? "text" : "password"}
+              placeholder="Confirm Password"
               name="confirmPassword"
               value={confirmPassword}
-              required 
+              required
               className="w-full p-3 pr-10 border border-[#ccc] rounded-md text-sm outline-none focus:border-[#c60000] focus:ring-1 focus:ring-[#c60000]"
-              onChange={(e)=>{setConfirmPassword(e.target.value)}}
+              onChange={(e) => { setConfirmPassword(e.target.value) }}
             />
             <button
               type="button"
@@ -205,31 +230,31 @@ const Signup = () => {
             </button>
           </div>
 
+          <div className="btns-div col-span-2 ">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-[#c60000] to-[#ff4d4d] text-white p-3.5 border-none rounded-[30px] text-base font-bold cursor-pointer mt-2.5 hover:opacity-90 transition-opacity duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? "Creating Account..." : "Create Account"}
+            </button>
 
-          
-          <button 
-            type="submit"
-            disabled={loading}
-            className="w-full bg-gradient-to-r from-[#c60000] to-[#ff4d4d] text-white p-3.5 border-none rounded-[30px] text-base font-bold cursor-pointer mt-2.5 hover:opacity-90 transition-opacity duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? "Creating Account..." : "Create Account"}
-          </button>
+            <div className="relative my-5 flex items-center">
+              <div className="flex-grow border-t border-[#ccc]"></div>
+              <span className="px-3 text-[#666] text-sm">OR</span>
+              <div className="flex-grow border-t border-[#ccc]"></div>
+            </div>
 
-          <div className="relative my-5 flex items-center">
-            <div className="flex-grow border-t border-[#ccc]"></div>
-            <span className="px-3 text-[#666] text-sm">OR</span>
-            <div className="flex-grow border-t border-[#ccc]"></div>
+            <button
+              type="button"
+              onClick={handleGoogleSignup}
+              disabled={loading}
+              className="w-full bg-white border border-[#ccc] text-[#333] p-3.5 rounded-[30px] text-base font-bold cursor-pointer hover:bg-[#f9f9f9] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <img src="/google-logo.png" alt="" className='h-5 w-5' />
+              Sign Up with Google
+            </button>
           </div>
-
-          <button
-            type="button"
-            onClick={handleGoogleSignup}
-            disabled={loading}
-            className="w-full bg-white border border-[#ccc] text-[#333] p-3.5 rounded-[30px] text-base font-bold cursor-pointer hover:bg-[#f9f9f9] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <img src="/google-logo.png" alt="" className='h-5 w-5'/>
-            Sign Up with Google
-          </button>
         </form>
 
         <div className="text-center mt-[15px] text-sm">

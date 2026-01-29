@@ -10,6 +10,9 @@ export const detailedService = [
     "rating": 4.8,
     "reviews": 124,
     "duration": "45 - 60 mins",
+    "payment_type" : "cash",
+    "servicer_id": Math.trunc(Math.random()*100),
+    "servicer_name" : "kishor",
     "warranty": "6 Months",
     "features": [
       "Odorless Gel Treatment",
@@ -47,7 +50,10 @@ export const detailedService = [
     "rating": 4.9,
     "reviews": 85,
     "duration": "2 - 4 Hours",
+    "servicer_id": Math.trunc(Math.random()*100),
+    "servicer_name" : "kishor",
     "warranty": "1 - 5 Years",
+    "payment_type": "cash",
     "features": [
       "Drill-Fill-Seal Technology",
       "Protects Furniture & Walls",
@@ -69,6 +75,9 @@ export const detailedService = [
       {
         "name": "Sneha Gupta",
         "rating": 5,
+        "servicer_id": Math.trunc(Math.random()*100),
+        "servicer_name" : "kishor",
+        "payment_type" : "cash",
         "comment": "Very thorough inspection. The warranty gives me peace of mind.",
         "date": "1 month ago"
       }
@@ -84,7 +93,10 @@ export const detailedService = [
     "rating": 4.7,
     "reviews": 210,
     "duration": "30 - 45 mins",
-    "warranty": "No Warranty (Recurring Service)",
+    "payment_type" : "cash",
+    "servicer_id": Math.trunc(Math.random()*100),
+    "servicer_name" : "kishor",
+    "warranty": "No",
     "features": [
       "Cold Fogging Technology",
       "Larvae Treatment",
@@ -121,6 +133,9 @@ export const detailedService = [
     "rating": 4.6,
     "reviews": 45,
     "duration": "1 - 2 Hours",
+    "payment_type" : "cash",
+    "servicer_id": Math.trunc(Math.random()*100),
+    "servicer_name" : "kishor",
     "warranty": "1 Year",
     "features": [
       "Syringe Injection Method",
@@ -158,6 +173,9 @@ export const detailedService = [
     "rating": 4.8,
     "reviews": 156,
     "duration": "1 Hour (2 Visits Required)",
+    "payment_type" : "cash",
+    "servicer_id": Math.trunc(Math.random()*100),
+    "servicer_name" : "kishor",
     "warranty": "45 Days",
     "features": [
       "Two-Visit Treatment",
@@ -195,6 +213,9 @@ export const detailedService = [
     "rating": 4.5,
     "reviews": 92,
     "duration": "30 - 45 mins",
+    "payment_type" : "cash",
+    "servicer_id": Math.trunc(Math.random()*100),
+    "servicer_name" : "kishor",
     "warranty": "3 Months",
     "features": [
       "Smart Trap Placement",
@@ -232,6 +253,9 @@ export const detailedService = [
     "rating": 4.7,
     "reviews": 68,
     "duration": "30 - 45 mins",
+    "payment_type" : "cash",
+    "servicer_id": Math.trunc(Math.random()*100),
+    "servicer_name" : "kishor",
     "warranty": "3 Months",
     "features": [
       "Colony Elimination",
@@ -269,6 +293,9 @@ export const detailedService = [
     "rating": 4.4,
     "reviews": 40,
     "duration": "45 mins",
+    "payment_type" : "cash",
+    "servicer_id": Math.trunc(Math.random()*100),
+    "servicer_name" : "kishor",
     "warranty": "One Time Service",
     "features": [
       "Chemical Spray Treatment",
@@ -306,6 +333,9 @@ export const detailedService = [
     "rating": 4.6,
     "reviews": 35,
     "duration": "45 mins",
+    "payment_type" : "cash",
+    "servicer_id": Math.trunc(Math.random()*100),
+    "servicer_name" : "kishor",
     "warranty": "3 Months",
     "features": [
       "Web Removal",
@@ -343,6 +373,9 @@ export const detailedService = [
     "rating": 5.0,
     "reviews": 110,
     "duration": "Based on Area",
+    "payment_type" : "cash",
+    "servicer_id": Math.trunc(Math.random()*100),
+    "servicer_name" : "kishor",
     "warranty": "Annual Contract (AMC)",
     "features": [
       "Audit Compliant",
