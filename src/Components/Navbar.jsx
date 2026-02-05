@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { auth, useAuth } from '../context/Firebase';
+import { auth, useAuth } from '../config/firebase';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);

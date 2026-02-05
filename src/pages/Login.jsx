@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useFirebase } from '../context/Firebase';
+import { useFirebase } from '../context/FirebaseContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 // Firebase error messages

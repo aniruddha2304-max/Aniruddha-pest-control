@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Chatbox from '../Components/Chatbox';
-import { useFirebase } from '../context/Firebase';
+import { useFirebase } from '../context/FirebaseContext';
 import { Region } from '../JSON_Data/Region';
 
 // Firebase error messages

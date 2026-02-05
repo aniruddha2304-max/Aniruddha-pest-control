@@ -9,7 +9,7 @@ const Home = () => {
   ]);
   const [chatInput, setChatInput] = useState("");
   const chatBodyRef = useRef(null);
-
+  
   // Auto-scroll chat
   useEffect(() => {
     if (chatBodyRef.current) {
@@ -98,9 +98,9 @@ const Home = () => {
         <h2 className="text-3xl font-bold text-[#333] mb-2">Book a Service Now</h2>
         <p className="text-gray-600 mb-6">Fast response | Affordable price | Expert technicians</p>
 
-        <a href="booking.html" className="bg-gradient-to-r from-[#c60000] to-[#ff4d4d] text-white px-[30px] py-3.5 rounded-[40px] text-[17px] font-bold inline-block hover:opacity-90 shadow-lg transition-all">
+        <Link to="/booking" className="bg-gradient-to-r from-[#c60000] to-[#ff4d4d] text-white px-[30px] py-3.5 rounded-[40px] text-[17px] font-bold inline-block hover:opacity-90 shadow-lg transition-all">
           Book Appointment
-        </a>
+        </Link>
       </section>
 
       {/* */}
