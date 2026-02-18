@@ -24,7 +24,7 @@ const Navbar = () => {
   const navLinkStyles = ({ isActive }) => {
     return `font-bold mx-3 transition-colors duration-300 no-underline ${isActive ? "text-[#c60000] border-b-3 border-b-[#c60000]" : "text-[#111] hover:text-[#c60000]"
       }`;
-  };
+  };  
 
   return (
     <nav className="bg-white py-1.5 px-6 flex justify-between items-center shadow-sm sticky top-0 z-[1000]">
@@ -90,6 +90,12 @@ const Navbar = () => {
           <button onClick={()=>{signOut(auth)}} className="px-4 py-2 border border-gray-300 text-gray-600 rounded-full text-sm font-medium hover:border-red-500 hover:text-red-600 hover:bg-red-50 transition-all duration-200">
             Logout
           </button>
+          <NavLink 
+          to="/account"
+          className={navLinkStyles}
+          >
+            <i className="ri-account-circle-line text-3xl text-gray-600 hover:text-[#c60000] transition-all duration-200"></i>
+          </NavLink>
           </div>) :
           (<div className="flex items-center gap-6">
             <NavLink to="/login" className="text-sm font-bold text-[#111] hover:text-[#c60000] transition-colors">

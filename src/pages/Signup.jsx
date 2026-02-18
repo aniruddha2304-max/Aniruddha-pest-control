@@ -80,8 +80,9 @@ const Signup = () => {
       console.log("User signup success", userCredential);
 
       try {
-        await firebase.addUser(userData);
-        console.log("User data added");
+        let res = await firebase.addUser(userData);
+        console.log("User data added ::: ", res.id);
+        firebase.setUserId(res.id);
         navigate("/");
       } catch (err) {
         // setError("Account created but failed to save profile. Please contact support.");

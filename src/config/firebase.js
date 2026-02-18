@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getDatabase } from "firebase/database";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 const firebaseConfig = {
@@ -55,3 +55,18 @@ export const useAuth = () => {
 
   return { user, loading };
 };
+
+
+export const getUserData = async (uid)=>{
+  const ref = doc(firestore, "users", uid);
+  // const data = await getDoc(ref);
+  // if (data.exists()) {
+  //   // .exists() is a method in v9
+  //   return data.data();
+  // } else {
+  //   // docSnap.data() will be undefined here
+  //   console.log("No such document found for UID:", uid);
+  //   return null;
+  // }
+  return getDoc(ref);
+}

@@ -5,14 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 // Firebase error messages
 const getFirebaseErrorMessage = (code) => {
   const errorMessages = {
-    'auth/email-already-in-use': 'Email is already registered. Please login or use another email.',
-    'auth/invalid-email': 'Please enter a valid email address.',
-    'auth/weak-password': 'Password must be at least 6 characters long.',
-    'auth/user-not-found': 'No account found with this email address.',
-    'auth/wrong-password': 'Incorrect password. Please try again.',
-    'auth/operation-not-allowed': 'Sign up is currently disabled. Please try again later.',
-    'auth/too-many-requests': 'Too many failed attempts. Please try again later.',
-    'auth/network-request-failed': 'Network error. Please check your internet connection.',
+    '(auth/email-already-in-use)': 'Email is already registered. Please login or use another email.',
+    '(auth/invalid-email)': 'Please enter a valid email address.',
+    '(auth/weak-password)': 'Password must be at least 6 characters long.',
+    '(auth/user-not-found)': 'No account found with this email address.',
+    '(auth/wrong-password)': 'Incorrect password. Please try again.',
+    '(auth/operation-not-allowed)': 'Sign up is currently disabled. Please try again later.',
+    '(auth/too-many-requests)': 'Too many failed attempts. Please try again later.',
+    '(auth/network-request-failed)': 'Network error. Please check your internet connection.',
   };
   return errorMessages[code] || 'An error occurred. Please try again.';
 };
@@ -33,8 +33,8 @@ const Login = () => {
     setLoading(true);
 
     try {
-      await firebase.loginWithEmailAndPassword(email, password);
-      console.log("Login Success");
+      let res = await firebase.loginWithEmailAndPassword(email, password);
+      firebase.setUserId(res.user.email);
       navigate("/");
     } catch (error) {
       const errorMessage = getFirebaseErrorMessage(error.code);
