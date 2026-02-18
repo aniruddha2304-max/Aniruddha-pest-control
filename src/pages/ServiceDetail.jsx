@@ -14,7 +14,7 @@ const ServiceDetails = () => {
   const { slug } = useParams();
 
   // 3. Run the "loop" to find the matching object
-  const service = serviceList.find((service) => service.id === slug);
+  const service = serviceList.find((service) => (service.id.includes(slug)));
 
   // 4. Handle invalid slugs (Optional but recommended)
   if (!service) {

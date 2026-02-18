@@ -1,14 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Chatbox from '../Components/Chatbox';
 
 const AboutUs = () => {
-  // State for Chat Visibility and Messages
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { type: 'bot', text: 'Hello 👋 How can we help you?' }
-  ]);
-  const [inputValue, setInputValue] = useState("");
-  const chatBodyRef = useRef(null);
 
   const featuresObj = [
     { name: "Certified Technicians", icon: "ri-medal-fill" },
@@ -19,35 +13,6 @@ const AboutUs = () => {
     { name: "High Customer Satisfaction", icon: "ri-emotion-happy-fill" }
   ];
 
-  // Auto-scroll to bottom of chat
-  useEffect(() => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
-    }
-  }, [messages, isChatOpen]);
-
-  // Toggle Chat Box
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
-
-  // Handle Sending Message
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && inputValue.trim() !== "") {
-      // Add User Message
-      const newMessages = [...messages, { type: 'user', text: inputValue }];
-      setMessages(newMessages);
-      setInputValue("");
-
-      // Simulate Bot Response
-      setTimeout(() => {
-        setMessages(prev => [
-          ...prev,
-          { type: 'bot', text: 'Thank you! Our team will contact you shortly.' }
-        ]);
-      }, 600);
-    }
-  };
 
   return (
     <div className="font-sans text-[#222]">
@@ -74,44 +39,7 @@ const AboutUs = () => {
         📞 Call Now
       </a>
 
-      {/* LIVE CHAT LAUNCHER */}
-      <div
-        className="fixed left-5 bottom-[35px] bg-[#c60000] text-white py-3.5 px-[22px] rounded-[30px] cursor-pointer z-[1200] animate-custom-pulse"
-        onClick={toggleChat}
-      >
-        💬 Live Chat
-      </div>
-
-      {/* CHAT BOX (Conditionally Rendered) */}
-      {isChatOpen && (
-        <div className="fixed left-5 bottom-[95px] w-[280px] bg-white rounded-[14px] shadow-[0_10px_30px_rgba(0,0,0,0.35)] flex flex-col overflow-hidden z-[1300]">
-          <div className="bg-[#c60000] text-white p-3 flex justify-between font-bold">
-            Live Support
-            <span onClick={toggleChat} className="cursor-pointer hover:opacity-80">✖</span>
-          </div>
-          <div className="h-[180px] p-2.5 overflow-auto bg-[#f7f7f7] flex flex-col" ref={chatBodyRef}>
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`p-2 px-3 rounded-[12px] my-1.5 text-sm ${msg.type === 'bot'
-                  ? 'bg-white self-start'
-                  : 'bg-[#c60000] text-white self-end text-right ml-auto'
-                  }`}
-              >
-                {msg.text}
-              </div>
-            ))}
-          </div>
-          <input
-            type="text"
-            placeholder="Type your message..."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="border-none border-t border-[#ddd] p-3 outline-none"
-          />
-        </div>
-      )}
+     <Chatbox />
 
       {/* WHO WE ARE */}
       <section className="py-[60px] px-[10%]">
@@ -128,8 +56,8 @@ const AboutUs = () => {
             <div className="why-choose-us">
               <h3 className='text-[3rem] font-bold text-[#c60000]'> Why Choose Us? </h3>
               <ul className='grid grid-cols-1 md:grid-cols-2 gap-5 md: gap-5 mt-4'>
-                {featuresObj.map((feature) => (
-                  <li className='font-medium text-gray-700'>
+                {featuresObj.map((feature, idx) => (
+                  <li key={idx} className='font-medium text-gray-700'>
                     <i className={`${feature.icon} text-blue-600 text-2xl mr-2`}></i>
                     {feature.name}
                   </li>

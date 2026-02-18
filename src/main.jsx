@@ -3,6 +3,8 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from "./App.jsx";
 import { Services, AboutUs, Booking, Home, Login, Signup, ServiceDetails } from './pages/index.js'
+import MyAccount from './pages/MyAccount.jsx';
+import { ProtectedRoute } from './Components/ProtectedRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,13 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <AboutUs />
+      },
+      {
+        path: "/account",
+        element:
+          <ProtectedRoute>
+            <MyAccount />
+          </ProtectedRoute>
       }
     ]
   }
@@ -43,6 +52,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
-    <RouterProvider router={router} />
+  <RouterProvider router={router} />
   // </StrictMode>,
 )
